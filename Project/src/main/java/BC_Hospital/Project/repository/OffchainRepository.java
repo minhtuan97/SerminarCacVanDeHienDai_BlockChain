@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface OffchainRepository extends JpaRepository<Byte[], String> {
 
-	@Query("SELECT file FROM offchain WHERE hash= :hash")
-	Byte[] getFileFromHash(@Param("hash") String hashValue);
+	@Query("SELECT file FROM offchain WHERE hashfile= :hashfile")
+	Byte[] getFileFromHash(@Param("hashfile") String hashValue);
 }
