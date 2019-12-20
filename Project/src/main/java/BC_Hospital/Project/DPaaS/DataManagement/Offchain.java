@@ -1,7 +1,7 @@
 package BC_Hospital.Project.DPaaS.DataManagement;
 
 import BC_Hospital.Project.Model.BlockOnChainRepository;
-import BC_Hospital.Project.Model.AccessingDataJpaApplication;
+//import BC_Hospital.Project.Model.AccessingDataJpaApplication;
 
 // Thao tác dữ liệu off chain
 // Dữ liệu Off Chain được lưu với mã hash của nó và data của nó lưu dưới dạng byte

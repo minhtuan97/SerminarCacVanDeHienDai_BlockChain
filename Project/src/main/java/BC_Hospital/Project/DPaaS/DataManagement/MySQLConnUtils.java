@@ -10,7 +10,7 @@ public class MySQLConnUtils {
 	public static Connection getMySQLConnection()
 	        throws ClassNotFoundException, SQLException {
 	    String hostName = "127.0.0.1";
-	    String dbName = "blockchain";
+	    String dbName = "mydb";
 	    String userName = "root";
 	    String password = "";
 	    return getMySQLConnection(hostName, dbName, userName, password);
