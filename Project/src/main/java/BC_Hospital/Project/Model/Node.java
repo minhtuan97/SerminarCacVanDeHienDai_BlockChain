@@ -3,6 +3,7 @@ package BC_Hospital.Project.Model;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 
+// Lớp Node tương đương Wallet trong Bitcoin
 public class Node {
 	
 	private PrivateKey privateKey;
