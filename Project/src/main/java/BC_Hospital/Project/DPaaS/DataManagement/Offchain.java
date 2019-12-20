@@ -1,22 +1,26 @@
 package BC_Hospital.Project.DPaaS.DataManagement;
 
-import BC_Hospital.Project.Model.BlockOnChainRepository;
-//import BC_Hospital.Project.Model.AccessingDataJpaApplication;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import BC_Hospital.Project.Model.BlockOffChain;
+import BC_Hospital.Project.repository.BlockOffChainRepository;
+
+@Service
 // Thao tác dữ liệu off chain
 // Dữ liệu Off Chain được lưu với mã hash của nó và data của nó lưu dưới dạng byte
 public class Offchain {
 	
-	static void storeOffChainData(String hash, byte[] data) {
-		
-		
-		
+	 @Autowired 
+	 private BlockOffChainRepository blockOffChainRepository;
+	 
+	void storeOffChainData(String hash, byte[] data) {
+		blockOffChainRepository.save(new BlockOffChain(hash, data));	
 	}
 	
 	// lấy dữ liệu (data) off chain từ mã hash của nó
-	static byte[] obtainOffChainData(String hash) {
-
-		
-		return null;
+	BlockOffChain obtainOffChainData(String hash) {		
+		BlockOffChain blockOffChain = blockOffChainRepository.findByHash(hash);
+		return blockOffChain;
 	}
 }

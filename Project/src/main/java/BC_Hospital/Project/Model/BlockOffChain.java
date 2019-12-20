@@ -8,6 +8,7 @@ import javax.persistence.*;
 @Table(name = "BlockOffChain") //Entity này đại diện cho table BlockOffChain trong db
 public class BlockOffChain {
 	@Id // Đánh dấu biến ở dưới là primary key của table này
+	@Column(name = "hash", unique = true)
 	private String hash;
 	
 	// Trường data ở dưới đại diện cho cột data của table trong database

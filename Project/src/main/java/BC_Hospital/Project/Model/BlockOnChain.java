@@ -19,19 +19,15 @@ public class BlockOnChain {
     @Column(name = "timeStamp")
     private long timeStamp;
     
-    @Column(name = "nonce")
-    private int nonce;
-
     // Constructor mặc định
     private BlockOnChain() {}
     
     // Constructor có tham số
-    public BlockOnChain(String hash, String previousHash, String data, long timeStamp, int nonce) {
+    public BlockOnChain(String hash, String previousHash, String data, long timeStamp) {
     	this.hash = hash;
     	this.previousHash = previousHash;
     	this.data = data;
     	this.timeStamp =timeStamp;
-    	this.nonce = nonce;
     }
     // Các Setter / Getter
     
@@ -63,11 +59,4 @@ public class BlockOnChain {
         return this.timeStamp;
     }
     
-    public void SetNonce(int nonce) {
-        this.nonce = nonce;
-    }
-    public int GetNonce() {
-        return this.nonce;
-    }
-
 }
