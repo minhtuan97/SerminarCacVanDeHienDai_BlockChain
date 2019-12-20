@@ -10,5 +10,4 @@ public class Node {
 	public PrivateKey privateKey;
 	
 	public ROLE role;
-
 }
