@@ -1,21 +1,80 @@
 package BC_Hospital.Project.DPaaS.SmartContract;
 
+import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MultipleAuthorities {
+	
+	protected List<String> authority;
+	protected int threshold;
+	
+	protected boolean agreeing;
+	protected String agreeRequester;
+	protected String agreeRequest;
+	protected boolean agreePermission;
+	protected Map<String, Boolean> agreeState;
+	protected boolean init;
 
-	void initial(List<String> authority, int threshold) {}
+	public void initial(List<String> authority, int threshold) {
+		if(init) return;
+		
+		this.authority = authority;
+		this.threshold = threshold;
+		init = true;
+	}
 	
-	void  applyAgreeRequest(String request) {}
+	private void initialAgree() {
+		agreeing = false;
+		agreeRequester = "";
+		agreeRequest = "";
+		agreePermission = false;
+		agreeState = new HashMap<>();
+		for (String au : authority) {
+			agreeState.put(au, false);
+		}
+	}
 	
-	void agreeSignature(Boolean agree) {}
+	public void  applyAgreeRequest(String request) {
+		if(agreeing == true)
+			return;
+		initialAgree();
+		agreeing = true;
+		agreeRequester = msg.sender;
+		agreeRequest = request;
+	}
 	
-	Boolean agreeResult() {
-		return null;}
+	public void agreeSignature(Boolean agree) {
+		agreeState[msg.sender] = agree;
+		if(agreeResult()){
+			agreePermission = true;
+		}
+	}
 	
-	void initialAgree() {}
+	private boolean agreeResult() {
+		int k = 0;
+		for(int i = 0; i <authority.size(); i++){
+				if(agreeState.get(authority.get(i)) == true)
+				k++;
+		}
+		if(k >= threshold)
+			return true;
+		else
+			return false;
+
+	}
 	
-	void pre_agree() {}
+	public void pre_agree() {
+		if(agreeing == true && agreePermission == true &&
+				msg.sender == agreeRequester){
+			//____________;
+			initialAgree();
+		}
+	}
 	
-	void cancelAgree() {}
+	public void cancelAgree() {
+		if(msg.sender == agreeRequester)
+			initialAgree();
+	}
 }
