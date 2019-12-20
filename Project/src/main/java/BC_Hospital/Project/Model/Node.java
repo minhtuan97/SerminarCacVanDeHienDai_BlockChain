@@ -5,10 +5,45 @@ import java.security.PublicKey;
 
 public class Node {
 	
-	public PublicKey publicKey;
+	private PrivateKey privateKey;
 	
-	public PrivateKey privateKey;
+	private PublicKey publicKey;	// Chính là địa chỉ của Node
+		
+	private ROLE role;	// Vai trò (BACSI: Bác sĩ , BENHNHAN: Bệnh nhân, BENHVIEN: Bệnh viện)
 	
-	public ROLE role;
+	// Các Getter / Getter các thuộc tính private 
+	
+    public PrivateKey getPrivateKey() {
+        return this.privateKey;
+    }
+    
+    public void setPrivateKey(PrivateKey privateKey) {
+        this.privateKey = privateKey;
+    }
+    
+    public PublicKey getPublicKey() {
+        return this.publicKey;
+    }
+    
+    public void setPublicKey(PublicKey publicKey) {
+        this.publicKey = publicKey;
+    }
+    
+    public ROLE getRole() {
+        return this.role;
+    }
+    
+    public void setRole(ROLE role) {
+        this.role = role;
+    }
+	
+    // Constructor mặc định
+	public Node () {};
+	
+	// Constructor 2 Tham số (PrivateKey, PublicKey)
+	public Node ( PrivateKey privateKey, PublicKey publicKey) {
+		this.privateKey = privateKey;
+		this.publicKey = publicKey;
+	};
 
 }
