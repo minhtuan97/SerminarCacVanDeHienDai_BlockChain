@@ -9,24 +9,28 @@ public class EmbeddedPermission {
 	protected List<Node> authority;
 	protected String owner;
 	
+	public String publicKey = "msg.sender";
+	
 	public void embeddedPermission(List<Node> temAuthority) {
-		owner = msg.sender;
+		owner = publicKey;//msg.sender;
 		authority = temAuthority;
 	}
 	
 	public void changeAuthority(List<Node> temAuthority) {
-		if(msg.sender == owner){
+		if(publicKey == owner){
 			authority = temAuthority;
 		}
 	}
 	
-	boolean permission(Node node) {
+	void permission(Node node) {
 		for(Node au :authority){
-			if(msg.sender == au.publicKey){
+			if(publicKey == au.publicKey.toString()){
 				//_;
-				break;
+				return;
 			}
 		}
+		
+		authority.add(node);
 	}
 
 }

@@ -10,6 +10,8 @@ public class MultipleAuthorities {
 	protected List<String> authority;
 	protected int threshold;
 	
+	public String publicKey = "msg.sender";
+	
 	protected boolean agreeing;
 	protected String agreeRequester;
 	protected String agreeRequest;
@@ -41,12 +43,12 @@ public class MultipleAuthorities {
 			return;
 		initialAgree();
 		agreeing = true;
-		agreeRequester = msg.sender;
+		agreeRequester = publicKey;//msg.sender;
 		agreeRequest = request;
 	}
 	
 	public void agreeSignature(Boolean agree) {
-		agreeState[msg.sender] = agree;
+		agreeState.put(publicKey, agree);
 		if(agreeResult()){
 			agreePermission = true;
 		}
@@ -67,14 +69,14 @@ public class MultipleAuthorities {
 	
 	public void pre_agree() {
 		if(agreeing == true && agreePermission == true &&
-				msg.sender == agreeRequester){
+				publicKey == agreeRequester){
 			//____________;
 			initialAgree();
 		}
 	}
 	
 	public void cancelAgree() {
-		if(msg.sender == agreeRequester)
+		if(publicKey == agreeRequester)
 			initialAgree();
 	}
 }
