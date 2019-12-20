@@ -5,10 +5,10 @@ import java.security.PublicKey;
 
 public class Node {
 	
-	PublicKey publicKey;
+	public PublicKey publicKey;
 	
-	PrivateKey privateKey;
+	public PrivateKey privateKey;
 	
-	ROLE role;
+	public ROLE role;
 
 }

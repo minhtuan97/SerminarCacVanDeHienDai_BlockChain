@@ -6,14 +6,27 @@ import BC_Hospital.Project.Model.Node;
 
 public class EmbeddedPermission {
 	
-	List<Node> authority;
-	String ownerString;
+	protected List<Node> authority;
+	protected String owner;
 	
-	void embeddedPermission(List<Node> temAuthority) {}
+	public void embeddedPermission(List<Node> temAuthority) {
+		owner = msg.sender;
+		authority = temAuthority;
+	}
 	
-	void changeAuthority(List<Node> temAuthority) {}
+	public void changeAuthority(List<Node> temAuthority) {
+		if(msg.sender == owner){
+			authority = temAuthority;
+		}
+	}
 	
-	Boolean permission(Node node) {
-		return null;}
+	boolean permission(Node node) {
+		for(Node au :authority){
+			if(msg.sender == au.publicKey){
+				//_;
+				break;
+			}
+		}
+	}
 
 }
