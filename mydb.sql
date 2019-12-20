@@ -14,7 +14,7 @@ drop table if exists ONCHAIN;
 create table OFFCHAIN
 (
    HASHFILE             char(64) not null  comment '',
-   FILE                 tinyint not null  comment '',
+   FILE                 blob not null  comment '',
    primary key (HASHFILE)
 );
 
