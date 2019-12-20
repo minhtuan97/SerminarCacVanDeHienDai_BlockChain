@@ -9,7 +9,7 @@ public class Home {
 	@RequestMapping("/")
     @ResponseBody
     public String welcome() {
-        return "Welcome to RestTemplate Example.";
+        return "Welcome to RestTemplate Example.fffff Ahihi";
     }
-
+	
 }
