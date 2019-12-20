@@ -1,14 +1,22 @@
 package BC_Hospital.Project.DPaaS.DataManagement;
 
+import BC_Hospital.Project.Model.BlockOnChainRepository;
+//import BC_Hospital.Project.Model.AccessingDataJpaApplication;
+
+// Thao tác dữ liệu off chain
+// Dữ liệu Off Chain được lưu với mã hash của nó và data của nó lưu dưới dạng byte
 public class Offchain {
 	
-	static void createTable() {}
+	static void storeOffChainData(String hash, byte[] data) {
+		
+		
+		
+	}
 	
-	static void createContract() {}
-	
-	static void storeOnChainData(String attribute, String ciphertext) {}
-	
-	static String obtainOnChainData() {
-		return null;}
+	// lấy dữ liệu (data) off chain từ mã hash của nó
+	static byte[] obtainOffChainData(String hash) {
 
+		
+		return null;
+	}
 }

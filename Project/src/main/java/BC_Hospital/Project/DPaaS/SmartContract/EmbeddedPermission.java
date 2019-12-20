@@ -24,7 +24,7 @@ public class EmbeddedPermission {
 	
 	void permission(Node node) {
 		for(Node au :authority){
-			if(publicKey == au.publicKey.toString()){
+			if(publicKey == au.getPublicKey().toString()){
 				//_;
 				return;
 			}
