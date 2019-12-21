@@ -1,15 +1,95 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
+<title>Login Hospital Management</title>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+<!-- <link rel="icon" type="image/png" href="images/icons/favicon.ico" />  -->
+<!--===============================================================================================-->
+
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/bootstrap.min.css}">
+<!--===============================================================================================-->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" th:href="@{/css/animate.css}">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/hamburgers.min.css}">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" th:href="@{/css/select2.min.css}">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" th:href="@{/css/util.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+<!--===============================================================================================-->
 </head>
+
 <body>
-<form th:action="@{/login}" th:object="${PersonForm}" enctype="multipart/form-data" method="POST">
-  Public Key: <input type="text"  name="publicKey"><br>
-  Private Key: <input type="text" name="privateKey"><br>
-  Name: <input type="text" name="ten"><br>
-  <input type="submit" value="Submit">
-</form>
+
+	<div class="limiter">
+		<div class="container-login100"
+			style="background-image: url('http://cdn.cnn.com/cnnnext/dam/assets/190910120101-04-shopping-cities-photos.jpg');">
+			<div class="wrap-login100 p-t-190 p-b-30">
+				<form class="login100-form validate-form" th:action="@{/login}" th:object="${PersonForm}" enctype="multipart/form-data" method="POST">
+					<div class="login100-form-avatar">
+						<img src="images/user-icon.png" alt="AVATAR">
+					</div>
+
+					<span class="login100-form-title p-t-20 p-b-45"> Hospital
+						Management </span>
+
+					<div class="wrap-input100 validate-input m-b-10"
+						data-validate="Không được bỏ trống trường này">
+						<input class="input100" type="text" name="publicKey"
+							placeholder="Public Key"> <span class="focus-input100"></span>
+						<span class="symbol-input100"> <i class="fa fa-unlock-alt"
+							aria-hidden="true"></i>
+						</span>
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-10"
+						data-validate="Không được bỏ trống trường này">
+						<input class="input100" type="text" name="privateKey"
+							placeholder="Private Key"> <span class="focus-input100"></span>
+						<span class="symbol-input100"> <i class="fa fa-lock"></i>
+						</span>
+					</div>
+
+
+					<div class="wrap-input100 validate-input m-b-10"
+						data-validate="Không được bỏ trống trường này">
+						<input class="input100" type="text" name="ten"
+							placeholder="Private Key"> <span class="focus-input100"></span>
+						<span class="symbol-input100"> <i class="fa fa-lock"></i>
+						</span>
+					</div>
+
+
+					<div class="container-login100-form-btn p-t-10">
+						<button type="submit" value="Submit" class="login100-form-btn">Login</button>
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+
+
+	<!--===============================================================================================-->
+	<script type="text/javascript" th:src="@{/js/jquery-3.2.1.min.js}"></script>
+	<!--===============================================================================================-->
+	<script type="text/javascript" th:src="@{/js/popper.js}"></script>
+	<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+	<!--===============================================================================================-->
+	<script type="text/javascript" th:src="@{/js/select2.min.js}"></script>
+	<!--===============================================================================================-->
+	<script type="text/javascript" th:src="@{/js/main.js}"></script>
+
 </body>
+
 </html>
