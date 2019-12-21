@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<form th:action="@{/login}" th:object="${PersonForm}" enctype="multipart/form-data" method="POST">
+  Public Key: <input type="text"  name="publicKey"><br>
+  Private Key: <input type="text" name="privateKey"><br>
+  Name: <input type="text" name="ten"><br>
+  <input type="submit" value="Submit">
+</form>
+</body>
+</html>
