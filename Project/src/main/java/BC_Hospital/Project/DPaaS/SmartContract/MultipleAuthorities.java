@@ -4,7 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class MultipleAuthorities {
+import BC_Hospital.Project.Model.Transation;
+
+public class MultipleAuthorities extends Transation {
 	
 	protected List<String> authority;
 	protected int threshold;

@@ -3,8 +3,11 @@ package BC_Hospital.Project.controller;
 import java.util.List;
 import java.util.Optional;
 import java.util.List;
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Base64;
 
+import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
@@ -14,11 +17,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import BC_Hospital.Project.AuServices.KeyGeneration;
 import BC_Hospital.Project.DPaaS.DataManagement.Offchain;
 import BC_Hospital.Project.DPaaS.DataManagement.Onchain;
 import BC_Hospital.Project.Model.BlockOffChain;
 import BC_Hospital.Project.Model.BlockOnChain;
+import BC_Hospital.Project.Model.Node;
 import BC_Hospital.Project.repository.BlockOffChainRepository;
+import ch.qos.logback.core.util.FileUtil;
 
 
 
@@ -132,6 +138,40 @@ public class Home {
 		return "account";
 	}
 	
+	//Luu vao file
+	@RequestMapping("/saveFile")
+	public String saveFile(Model model, @ModelAttribute("keyData") KeyData keyData) {
+
+		System.out.println("input privateKey"+keyData.privateKey );
+		try {
+			Node aNode= new Node(keyData.privateKey, keyData.publicKey);
+			System.out.println("ket qua: "+Base64.getEncoder().encodeToString(aNode.getPrivateKey().getEncoded()));
+			//System.out.println("ket qua"+aNode.getPrivateKey().toString());
+		} catch (Exception e) {
+			System.out.println("Loi khong the convert");
+			
+		}
+		System.out.println("Het");
+
+		
+		
+		
+		return "generation";
+	}
+	
+	//Tao mot key
+	@RequestMapping("/generateKey")
+	public String generateKey(Model model) {
+		Node node = KeyGeneration.Generate();
+		String publicKey = Base64.getEncoder().encodeToString(node.getPublicKey().getEncoded());	
+		String privateKey = Base64.getEncoder().encodeToString(node.getPrivateKey().getEncoded());	;	
+
+		model.addAttribute("publicKey", publicKey);
+		model.addAttribute("privateKey", privateKey);
+		
+		
+		return "generation";
+	}
 	
 
 	// Tao mot smart constract

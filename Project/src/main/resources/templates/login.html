@@ -33,7 +33,9 @@
 		<div class="container-login100"
 			style="background-image: url('http://cdn.cnn.com/cnnnext/dam/assets/190910120101-04-shopping-cities-photos.jpg');">
 			<div class="wrap-login100 p-t-190 p-b-30">
-				<form class="login100-form validate-form" th:action="@{/login}" th:object="${PersonForm}" enctype="multipart/form-data" method="POST">
+				<form class="login100-form validate-form" th:action="@{/login}"
+					th:object="${PersonForm}" enctype="multipart/form-data"
+					method="POST">
 					<div class="login100-form-avatar">
 						<img src="images/user-icon.png" alt="AVATAR">
 					</div>
@@ -71,8 +73,12 @@
 					<div class="container-login100-form-btn p-t-10">
 						<button type="submit" value="Submit" class="login100-form-btn">Login</button>
 					</div>
+					
+					<a th:href="@{/generateKey}">Tao key</a>
+
 
 				</form>
+
 			</div>
 		</div>
 	</div>

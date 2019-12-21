@@ -21,13 +21,13 @@ public class KeyGeneration {
 			SecureRandom random = new SecureRandom();
 			//ECGenParameterSpec ecSpec = new ECGenParameterSpec("secp256k1");
 			// Initialize the key generator and generate a KeyPair
-			keyGen.initialize(512, random);   //512 bytes provides an acceptable security level
+			keyGen.initialize(1024, random);   //512 bytes provides an acceptable security level
         	KeyPair keyPair = keyGen.generateKeyPair();
         	// Set the public and private keys from the keyPair
         	PrivateKey privateKey = keyPair.getPrivate();
         	PublicKey publicKey = keyPair.getPublic();
         	
-    		System.out.println("\nPrivate key: " + Base64.getEncoder().encodeToString(privateKey.getEncoded()) + "\nPublic key: " + Base64.getEncoder().encodeToString(publicKey.getEncoded()) );
+    		//System.out.println("\nPrivate key: " + Base64.getEncoder().encodeToString(privateKey.getEncoded()) + "\nPublic key: " + Base64.getEncoder().encodeToString(publicKey.getEncoded()) );
         	
         	node = new Node(privateKey, publicKey);
 	        	

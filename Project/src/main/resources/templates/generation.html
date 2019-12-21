@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<form th:action="@{/saveFile}" th:object="${KeyData}" enctype="multipart/form-data"
+					method="POST">
+		<h5>Public key:</h5>	
+		<input type="text" th:value="${publicKey}" name="publicKey"></input>
+		<h5>Private key:</h5>
+		<input type="text" th:value="${privateKey}" name="privateKey"></input>
+		<input  type="submit" value="Submit"/>
+	</form>
+</body>
+</html>
