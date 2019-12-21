@@ -61,17 +61,22 @@ public class Home {
 	
 	// Login
 	@RequestMapping("/home")
-	public String login(Model model, @ModelAttribute("personForm") PersonForm personForm) {
+	public String login(Model model, @ModelAttribute("KeyData") KeyData keyData) {
 
-		String name = personForm.getTen();
-		String publicKey = personForm.getPublicKey();
+		try {}
+		catch (Exception e) {
+			return "login";
+		}
 		
-		PersonForm newPerson = new PersonForm();
-		newPerson.setTen(name);
-		newPerson.setPublicKey(publicKey);
+//		String name = personForm.getTen();
+//		String publicKey = personForm.getPublicKey();		
+//		PersonForm newPerson = new PersonForm();
+//		newPerson.setTen(name);
+//		newPerson.setPublicKey(publicKey);
 		
+		Node node = new Node(keyData.publicKey, keyData.privateKey);
 
-		model.addAttribute("person", newPerson);
+		model.addAttribute("node", node);
 		
 		
 		//Get Transaction
@@ -142,9 +147,9 @@ public class Home {
 	@RequestMapping("/saveFile")
 	public String saveFile(Model model, @ModelAttribute("keyData") KeyData keyData) {
 
-		System.out.println("input privateKey"+keyData.privateKey );
+		System.out.println("input privateKey:\n"+keyData.privateKey );
 		try {
-			Node aNode= new Node(keyData.privateKey, keyData.publicKey);
+			Node aNode= new Node(keyData.publicKey, keyData.privateKey);
 			System.out.println("ket qua: "+Base64.getEncoder().encodeToString(aNode.getPrivateKey().getEncoded()));
 			//System.out.println("ket qua"+aNode.getPrivateKey().toString());
 		} catch (Exception e) {

@@ -76,7 +76,7 @@
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle page-scroll" href="#about"
 					id="navbarDropdown" role="button" aria-haspopup="true"
-					aria-expanded="false" th:if="${person!= null}" th:utext="${person.ten}">...</a>
+					aria-expanded="false" th:if="${node!= null}" th:text="${node.getPublicKeyString().substring(node.getPublicKeyString().length()-10)}">...</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 						<a class="dropdown-item" href="terms-conditions.html"><span
 							class="item-text">Đăng xuất</span></a>
