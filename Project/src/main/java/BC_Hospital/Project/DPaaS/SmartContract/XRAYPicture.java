@@ -1,13 +1,9 @@
 package BC_Hospital.Project.DPaaS.SmartContract;
 
-import org.springframework.beans.factory.annotation.Autowired;
 
-import BC_Hospital.Project.repository.OffchainRepository;
 
 public class XRAYPicture extends EmbeddedPermission {
 
-	@Autowired
-	private OffchainRepository offchainRepository;
 	
 	String filePath;
 	String hashValue;
@@ -19,7 +15,7 @@ public class XRAYPicture extends EmbeddedPermission {
 	}
 	
 	Byte[] getFile() {
-		return offchainRepository.getFileFromHash(hashValue);
+		return null;
 	}
 	
 	void setFile(String filepath) {

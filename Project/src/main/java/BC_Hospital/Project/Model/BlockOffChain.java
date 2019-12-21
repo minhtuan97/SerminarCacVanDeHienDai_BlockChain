@@ -5,38 +5,38 @@ import javax.persistence.*;
 // Pojo (plain old Java object) là class đại diện cho một Table
 
 @Entity // Đánh dấu đây là một Entity, chịu sự quản lý của Hibernate
-@Table(name = "BlockOffChain") //Entity này đại diện cho table BlockOffChain trong db
+@Table(name = "offchain") //Entity này đại diện cho table BlockOffChain trong db
 public class BlockOffChain {
+
 	@Id // Đánh dấu biến ở dưới là primary key của table này
-	@Column(name = "hash", unique = true)
-	private String hash;
+	@Column(name = "hashfile", unique = true)
+	private String hashfile;
 	
 	// Trường data ở dưới đại diện cho cột data của table trong database
-	@Column(name = "data", unique = true)
-	private byte[] data; 
+	@Column(name = "file", unique = true)
+	private byte[] file;
 	
-	// Constructor mặc định
-	protected  BlockOffChain () {}
+	private BlockOffChain() {}
 	
-	// Constructor 2 Tham số
-	public BlockOffChain(String hash, byte[] data) {
-		this.hash = hash;
-		this.data = data;
+	public BlockOffChain(String hashfile, byte[] file) {
+		this.hashfile = hashfile;
+		this.file = file;
 	}
-	
-	// Các Setter / Getter
 
-	public void setHash(String hash) {
-	    this.hash = hash;
+	public String getHashfile() {
+		return hashfile;
 	}
-	public String getHash() {
-	    return this.hash;
+
+	public void setHashfile(String hashfile) {
+		this.hashfile = hashfile;
 	}
-	
-	public void setData(byte[] data) {
-	    this.data = data;
+
+	public byte[] getFile() {
+		return file;
 	}
-	public byte[] getData() {
-	    return this.data;
+
+	public void setFile(byte[] file) {
+		this.file = file;
 	}
+
 }

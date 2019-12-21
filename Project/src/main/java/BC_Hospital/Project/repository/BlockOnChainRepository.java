@@ -11,8 +11,8 @@ public interface BlockOnChainRepository extends CrudRepository<BlockOnChain, Str
 	// Lấy một record off chain thông qua mã hash của nó
 	BlockOnChain findByHash(String hash);
 	
-	@SuppressWarnings("unchecked")
-	BlockOnChain save(BlockOnChain blockOnChain);
+//	@SuppressWarnings("unchecked")
+//	BlockOnChain save(BlockOnChain blockOnChain);
 
 	
 }

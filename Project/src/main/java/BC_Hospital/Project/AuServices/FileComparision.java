@@ -2,16 +2,16 @@ package BC_Hospital.Project.AuServices;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import BC_Hospital.Project.repository.OffchainRepository;
+import BC_Hospital.Project.repository.BlockOffChainRepository;
 
 public class FileComparision {
 	
 	@Autowired
-	private OffchainRepository offchainRepository;
+	private BlockOffChainRepository blockOffChainRepository;
 	
-	boolean Compare(String filePath, String hashValue) {
+	boolean Compare(String hashValue) {
 		
-		Byte[] file = offchainRepository.getFileFromHash(hashValue);
+		byte[] file = blockOffChainRepository.findByHash(filePath).getFile();
 		String fileHash = file.toString(); // hàm mã hóa lấy hashcode
 		
 		return fileHash.equals(hashValue);
