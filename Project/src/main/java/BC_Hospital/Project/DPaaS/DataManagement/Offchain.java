@@ -1,5 +1,7 @@
 package BC_Hospital.Project.DPaaS.DataManagement;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,13 +16,13 @@ public class Offchain {
 	 @Autowired 
 	 private BlockOffChainRepository blockOffChainRepository;
 	 
-	void storeOffChainData(String hash, byte[] data) {
+	public void storeOffChainData(String hash, byte[] data) {
 		blockOffChainRepository.save(new BlockOffChain(hash, data));	
 	}
 	
 	// lấy dữ liệu (data) off chain từ mã hash của nó
-	BlockOffChain obtainOffChainData(String hash) {		
-		BlockOffChain blockOffChain = blockOffChainRepository.findByHash(hash);
-		return blockOffChain;
+	public BlockOffChain obtainOffChainData(String hashfile) {		
+		Optional<BlockOffChain> blockOffChain = blockOffChainRepository.findByhashfile(hashfile);
+		return blockOffChain.get();
 	}
 }

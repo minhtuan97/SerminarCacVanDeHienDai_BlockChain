@@ -11,10 +11,11 @@ public class FileComparision {
 	
 	boolean Compare(String hashValue) {
 		
-		byte[] file = blockOffChainRepository.findByHash(filePath).getFile();
-		String fileHash = file.toString(); // hàm mã hóa lấy hashcode
-		
-		return fileHash.equals(hashValue);
+//		byte[] file = blockOffChainRepository.findByhashfile(hashValue).getFile();
+//		String fileHash = file.toString(); // hàm mã hóa lấy hashcode
+//		
+//		return fileHash.equals(hashValue);
+		return true;
 	}
 
 }

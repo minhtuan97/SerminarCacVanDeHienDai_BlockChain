@@ -15,9 +15,9 @@ public class KeyGeneration {
 	public static Node Generate() {
 		Node node = null;
 		try {
-			KeyPairGenerator keyGen = KeyPairGenerator.getInstance("ECDSA","BC");
+			KeyPairGenerator keyGen = KeyPairGenerator.getInstance("EC");
 			SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
-			ECGenParameterSpec ecSpec = new ECGenParameterSpec("prime192v1");
+			ECGenParameterSpec ecSpec = new ECGenParameterSpec("secp256k1");
 			// Initialize the key generator and generate a KeyPair
 			keyGen.initialize(ecSpec, random);   //256 bytes provides an acceptable security level
         	KeyPair keyPair = keyGen.generateKeyPair();
@@ -25,7 +25,7 @@ public class KeyGeneration {
         	PrivateKey privateKey = keyPair.getPrivate();
         	PublicKey publicKey = keyPair.getPublic();
         	
-    		//System.out.println("\nPrivate key: " + privateKey + "\nPublic key: " + publicKey );
+    		System.out.println("\nPrivate key: " + privateKey + "\nPublic key: " + publicKey );
         	
         	node = new Node(privateKey, publicKey);
 	        	
