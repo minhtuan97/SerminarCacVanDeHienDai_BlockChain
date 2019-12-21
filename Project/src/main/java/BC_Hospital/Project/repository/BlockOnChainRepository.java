@@ -11,10 +11,10 @@ import BC_Hospital.Project.Model.BlockOnChain;
 public interface BlockOnChainRepository extends CrudRepository<BlockOnChain, String> {
 
 	// Lấy một record off chain thông qua mã hash của nó
-	Optional<BlockOnChain> findByHash(String hash);
+	Optional<BlockOnChain> findByhash(String hash);
 	
-//	@SuppressWarnings("unchecked")
-//	BlockOnChain save(BlockOnChain blockOnChain);
+	@SuppressWarnings("unchecked")
+	BlockOnChain save(BlockOnChain blockOnChain);
 
 	
 }
