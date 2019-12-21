@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import BC_Hospital.Project.DPaaS.DataManagement.Offchain;
 import BC_Hospital.Project.Model.BlockOffChain;
@@ -26,7 +27,7 @@ public class Home {
 	
 	public List<MyTransaction> listTransaction = new ArrayList<MyTransaction>();
 
-	@RequestMapping("/")
+	@RequestMapping("/demo")
     @ResponseBody
     public Optional<BlockOffChain> welcome2() {
 		//BlockOffChain  aBlockOffChain = new BlockOffChain("112233456", "03030303 ahi dsoac ".getBytes());
