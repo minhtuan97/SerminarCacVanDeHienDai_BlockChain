@@ -34,7 +34,7 @@ public class Home {
 
 	@RequestMapping("/demo")
     @ResponseBody
-    public Optional<BlockOffChain> welcome2() {
+    public Optional<BlockOnChain> welcome2() {
 		BlockOnChain blockOnChain = new BlockOnChain("112233456", "112233455", "11223345603030303 ahi dsoac ", 11111);
 		//BlockOffChain  aBlockOffChain = new BlockOffChain("112233456", "03030303 ahi dsoac ".getBytes());
 		//return aOffchain.storeOffChainData("1122334567", "03030303 ahi dsoac ".getBytes());
@@ -54,7 +54,7 @@ public class Home {
 
 	
 	// Login
-	@RequestMapping("/login")
+	@RequestMapping("/home")
 	public String login(Model model, @ModelAttribute("personForm") PersonForm personForm) {
 
 		String name = personForm.getTen();
