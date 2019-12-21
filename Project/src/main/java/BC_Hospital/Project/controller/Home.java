@@ -1,5 +1,6 @@
 package BC_Hospital.Project.controller;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.List;
 import java.util.ArrayList;
@@ -14,26 +15,35 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import BC_Hospital.Project.DPaaS.DataManagement.Offchain;
+import BC_Hospital.Project.DPaaS.DataManagement.Onchain;
 import BC_Hospital.Project.Model.BlockOffChain;
+import BC_Hospital.Project.Model.BlockOnChain;
 import BC_Hospital.Project.repository.BlockOffChainRepository;
 
 
 
 @Controller
 public class Home {
+	
 	@Autowired
-	private BlockOffChainRepository blockOffChainRepository;
 	private Offchain aOffchain;
+	@Autowired
+	private Onchain aOnchain;
 	
 	public List<MyTransaction> listTransaction = new ArrayList<MyTransaction>();
 
 	@RequestMapping("/demo")
     @ResponseBody
     public Optional<BlockOffChain> welcome2() {
+		BlockOnChain blockOnChain = new BlockOnChain("112233456", "112233455", "11223345603030303 ahi dsoac ", 11111);
 		//BlockOffChain  aBlockOffChain = new BlockOffChain("112233456", "03030303 ahi dsoac ".getBytes());
-		//return blockOffChianRepository.save(aBlockOffChain);
-		return blockOffChainRepository.findByhashfile("112233456");
+		//return aOffchain.storeOffChainData("1122334567", "03030303 ahi dsoac ".getBytes());
+		//return blockOffChainRepository.findByhashfile("112233456");
         //return aOffchain.obtainOffChainData("112233456");
+		//return aOffchain.finaAll();
+//		aOnchain.storeOnChainData("attribute", "ciphertext", blockOnChain );
+//		return"aaa";
+		return aOnchain.obtainOnChainData("112233456");
     }
 
 	

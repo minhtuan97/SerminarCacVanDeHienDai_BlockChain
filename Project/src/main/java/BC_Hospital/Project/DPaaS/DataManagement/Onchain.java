@@ -1,5 +1,7 @@
 package BC_Hospital.Project.DPaaS.DataManagement;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,27 +11,27 @@ import BC_Hospital.Project.repository.BlockOnChainRepository;
 @Service
 public class Onchain {
 	
-//	 @Autowired 
-//	 private BlockOnChainRepository blockOnChainRepository;
-//	 
-//	// Tạo các bảng dữ liệu ở cơ sở dữ liệu
-//	public void createTable() {    
-//	    // Cái này không cần nữa vì @Entity nó tự tạo rồi
-//	}
-//	
-//	// Tạo sự liên lạc, Hợp đồng
-//	public void createContract() {}
-//	
-//	// Lưu Data vào OnChain : Khởi tạo một Block rồi đưa vào chuỗi
-//	public void storeOnChainData(String attribute, String ciphertext, BlockOnChain blockOnChain) {
-//		blockOnChainRepository.save(blockOnChain);
-//	    System.out.println("storeOnChainData sucessfully"); 
-//	}
-//	
-//	// Lấy Data từ OnChain
-//	public BlockOnChain obtainOnChainData(String hash) {
-//		BlockOnChain blockOnChain = blockOnChainRepository.findByHash(hash);
-//		return blockOnChain;
+	 @Autowired 
+	 private BlockOnChainRepository blockOnChainRepository;
 
-	//}	
+	// Tạo các bảng dữ liệu ở cơ sở dữ liệu
+	public void createTable() {    
+	    // Cái này không cần nữa vì @Entity nó tự tạo rồi
+	}
+	
+	// Tạo sự liên lạc, Hợp đồng
+	public void createContract() {}
+	
+	// Lưu Data vào OnChain : Khởi tạo một Block rồi đưa vào chuỗi
+	public void storeOnChainData(String attribute, String ciphertext, BlockOnChain blockOnChain) {
+		blockOnChainRepository.save(blockOnChain);
+	    System.out.println("storeOnChainData sucessfully"); 
+	}
+	
+	// Lấy Data từ OnChain
+	public Optional<BlockOnChain> obtainOnChainData(String hash) {
+		return blockOnChainRepository.findByhash(hash);
+		
+
+	}	
 }
