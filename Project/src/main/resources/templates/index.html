@@ -1,0 +1,299 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+
+<!-- Website Title -->
+<title>Hospital Management</title>
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Tinos&display=swap"
+	rel="stylesheet">
+
+
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/bootstrap.min.css}">
+
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/fontawesome-all.css}">
+
+<link rel="stylesheet" type="text/css" th:href="@{/css/swiper.css}">
+
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/magnific-popup.css}">
+
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+
+
+<!-- Favicon  -->
+<link rel="icon" href="images/favicon.png">
+
+</head>
+
+<body data-spy="scroll" data-target=".fixed-top">
+
+	<!-- Preloader -->
+	<div class="spinner-wrapper">
+		<div class="spinner">
+			<div class="bounce1"></div>
+			<div class="bounce2"></div>
+			<div class="bounce3"></div>
+		</div>
+	</div>
+	<!-- end of preloader -->
+
+
+	<!-- Navigation -->
+	<nav
+		class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+
+		<!-- Image Logo -->
+		<a class="navbar-brand logo-image" href="index.html"><img
+			src="images/logo.svg" alt="alternative"></a>
+
+		<!-- Mobile Menu Toggle Button -->
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarsExampleDefault"
+			aria-controls="navbarsExampleDefault" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-awesome fas fa-bars"></span> <span
+				class="navbar-toggler-awesome fas fa-times"></span>
+		</button>
+		<!-- end of mobile menu toggle button -->
+
+		<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item"><a class="nav-link page-scroll"
+					href="#header">Trang chủ <span class="sr-only">(current)</span></a></li>
+				<li class="nav-item"><a class="nav-link page-scroll"
+					href="#SubmitData">Tạo smart contract</a></li>
+				<li class="nav-item"><a class="nav-link page-scroll"
+					href="#BrowseData">Duyệt dữ liệu</a></li>
+
+				<!-- Dropdown Menu -->
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle page-scroll" href="#about"
+					id="navbarDropdown" role="button" aria-haspopup="true"
+					aria-expanded="false" th:if="${person!= null}" th:utext="${person.ten}">...</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="terms-conditions.html"><span
+							class="item-text">Đăng xuất</span></a>
+					</div></li>
+				<!-- end of dropdown menu -->
+
+			</ul>
+		</div>
+	</nav>
+	<!-- end of navbar -->
+	<!-- end of navigation -->
+
+
+	<!-- Header -->
+	<header id="header" class="header">
+		<div class="header-content">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-6">
+						<div class="text-container">
+							<h1>
+								<span class="turquoise">Hospital Management</span>
+							</h1>
+							<p class="p-large">Sử dụng Blockchain As A Services để quản
+								lý và chia sẻ dữ liệu công khai, minh bạch</p>
+							<a class="btn-solid-lg page-scroll" href="#SubmitData">Khám
+								phá</a>
+						</div>
+						<!-- end of text-container -->
+					</div>
+					<!-- end of col -->
+					<div class="col-lg-6">
+						<div class="image-container">
+							<img class="img-fluid" src="images/header-teamwork.svg"
+								alt="alternative">
+						</div>
+						<!-- end of image-container -->
+					</div>
+					<!-- end of col -->
+				</div>
+				<!-- end of row -->
+			</div>
+			<!-- end of container -->
+		</div>
+		<!-- end of header-content -->
+	</header>
+	<!-- end of header -->
+	<!-- end of header -->
+
+
+
+	<!-- Submit Data -->
+	<div id="SubmitData" class="form-1">
+		<div class="container">
+			<div class="form-container">
+				<form id="requestForm" th:action="@{/submit}" th:object="${MyTransaction}" enctype="multipart/form-data" method="POST" data-toggle="validator" data-focus="false">
+					<div class="row">
+						<div class="col-lg-4">
+							<!-- Submit Form -->
+							<div class="form-group">
+								<input type="text" class="form-control-input" id="rname"
+									 required> <label class="label-control">Tên</label>
+								<div class="help-block with-errors"></div>
+							</div>
+							<!-- end of submit form -->			
+						</div>
+						<!-- end of col -->
+						<div class="col-lg-4">
+							<!-- Submit Form -->
+							<div class="form-group">
+								<input type="text" class="form-control-input" id="rname"
+									required> <label class="label-control">Tên</label>
+								<div class="help-block with-errors"></div>
+							</div>
+							<!-- end of submit form -->	
+						</div>
+						<!-- end of col -->
+						<div class="col-lg-4">
+
+							<!-- Submit Form -->
+
+							<div class="form-group">
+								<input type="text" class="form-control-input" id="rname"
+									name="nameTransaction" required> <label class="label-control">Tên giao dịch</label>
+								<div class="help-block with-errors"></div>
+							</div>
+
+							<div class="form-group">
+								<button type="submit" value="Submit" class="form-control-submit-button">Đồng ý</button>
+							</div>
+							<!-- end of submit form -->
+
+						</div>
+						<!-- end of col -->
+					</div>
+					<!-- end of row -->
+				</form>
+			</div>
+			<!-- end of form-container -->
+		</div>
+		<!-- end of container -->
+	</div>
+	<!-- end of form-1 -->
+	<!-- end of submit fata -->
+
+
+
+	<!-- Browse Data -->
+	<div id="BrowseData" class="form-1">
+		<div class="container">
+			<div class="form-container">
+				<form id="requestForm" data-toggle="validator" data-focus="false">
+					<div class="row">
+						<div class="col-lg-6">
+							<div class="dropdown"
+								style="z-index: 10000; margin-bottom: 1rem;">
+								<button class="btn btn-outline-primary waves-effect"
+									type="button" id="dropdownMenuButton" data-toggle="dropdown"
+									aria-haspopup="true" aria-expanded="false">Tùy chọn
+									giao dịch ▼</button>
+								<div class="dropdown-menu" style="text-decoration: none"
+									aria-labelledby="dropdownMenuButton">
+									<a class="dropdown-item" style="text-decoration: none" href="getNeedPermission">
+										Giao dịch cần xác thực 
+									</a> 
+									<a class="dropdown-item" style="text-decoration: none" href="getPermitted">
+										Giao dịch đã xác thực 
+									</a> 								
+								</div>
+							</div>
+
+
+							<div class="card" id="style-2">
+								<div class="card-block-2">
+									<ul class="task-list" th:each ="transaction : ${listTransaction}">
+										<li><i class="task-icon bg-c-green"></i> <a
+											th:if="${transaction!= null}" th:utext="${transaction.nameTransaction}"
+											href="getDetailTransaction">...<span class="float-right text-muted">14
+													MAY</span>
+										</a>
+									</ul>
+								</div>
+							</div>
+
+						</div>
+						<!-- end of col -->
+
+						<div class="col-lg-6">
+							<div class="card" id="style-2">
+								<div class="text-center sticky-top top-header-card">
+									<h4>Chi tiết giao dịch</h4>
+								</div>
+
+								<div class="card-block">
+									<ul class="task-list">
+										<li>
+											<h6>Tên giao dịch:</h6>
+											<p th:if="${detailTransaction != null}" th:text="${detailTransaction.nameTransaction}" class="text-muted">...</p>
+										</li>
+										<li>
+											<h6>Tên giao dịch:</h6>
+											<p th:if="${detailTransaction != null}" th:text="${detailTransaction.nameTransaction}" class="text-muted">...</p>
+										</li>
+										<li>
+											<h6>Tên giao dịch:</h6>
+											<p th:if="${detailTransaction != null}" th:text="${detailTransaction.nameTransaction}" class="text-muted">...</p>
+										</li>
+									</ul>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-lg-12">
+									<a th:if="${detailTransaction != null}" th:href="@{/permitTransaction/__${detailTransaction.nameTransaction}__}" class="btn btn-primary" style="color:white; text-decoration: none;">
+										Đồng ý
+									</a>
+									<span>
+										<a href="#" class="btn btn-danger" style="color:white; text-decoration: none">
+											Không đồng ý
+										</a>
+									</span>
+								</div>
+							</div>
+
+						</div>
+						<!-- end of col -->
+					</div>
+					<!-- end of row -->
+				</form>
+			</div>
+			<!-- end of form-container -->
+		</div>
+
+
+
+
+		<!-- end of container -->
+	</div>
+	<!-- end of form-1 -->
+	<!-- end of Browse -->
+
+
+
+
+
+
+
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/popper.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/jquery.easing.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/swiper.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/jquery.magnific-popup.js}"></script>
+	<script type="text/javascript" th:src="@{/js/scripts.js}"></script>
+
+
+</body>
+</html>
