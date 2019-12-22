@@ -32,16 +32,10 @@
 
 </head>
 
-<body data-spy="scroll" data-target=".fixed-top">
+<body data-spy="scroll">
 
-	<!-- Preloader -->
-	<div class="spinner-wrapper">
-		<div class="spinner">
-			<div class="bounce1"></div>
-			<div class="bounce2"></div>
-			<div class="bounce3"></div>
-		</div>
-	</div>
+<!-- Preloader -->
+
 	<!-- end of preloader -->
 
 
@@ -76,7 +70,7 @@
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle page-scroll" href="#about"
 					id="navbarDropdown" role="button" aria-haspopup="true"
-					aria-expanded="false" th:if="${node!= null}" 
+					aria-expanded="false" th:if="${node!= null}"
 					th:text="${node.getPublicKeyString().substring(node.getPublicKeyString().length()-10)}">...</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 						<a class="dropdown-item" href="terms-conditions.html"><span
@@ -104,8 +98,8 @@
 							<p class="p-large">Sử dụng Blockchain As A Services để quản
 								lý và chia sẻ dữ liệu công khai, minh bạch</p>
 							<!-- Button trigger modal -->
-							<button type="button" class="btn-solid-lg page-scroll" data-toggle="modal" data-target="#exampleModal">
-							  Đăng ký 
+							<button type="button" class="btn-solid-lg page-scroll"
+								data-toggle="modal" data-target="#exampleModal">Đăng ký
 							</button>
 						</div>
 						<!-- end of text-container -->
@@ -135,19 +129,23 @@
 	<div id="SubmitData" class="form-1">
 		<div class="container">
 			<div class="form-container">
-				<form id="requestForm" th:action="@{/taoSmartContract}" th:object="${SmartContractForm}" enctype="multipart/form-data" method="POST" data-toggle="validator" data-focus="false">
+				<form id="requestForm" th:action="@{/taoSmartContract}"
+					th:object="${SmartContractForm}" enctype="multipart/form-data"
+					method="POST" data-toggle="validator" data-focus="false">
 					<div class="row">
 						<div class="col-lg-4">
 							<label>Thông tin bệnh án</label>
 							<!-- Submit Form -->
 							<div class="form-group">
 								<input type="text" class="form-control-input" id="rname"
-									name="MSBenhAn" required> <label class="label-control">Mã số bệnh án</label>
+									name="MSBenhAn" required> <label class="label-control">Mã
+									số bệnh án</label>
 								<div class="help-block with-errors"></div>
 							</div>
 							<div class="form-group">
 								<input type="text" class="form-control-input" id="rname"
-									name="SoBenhAn" required> <label class="label-control">Số bệnh án</label>
+									name="SoBenhAn" required> <label class="label-control">Số
+									bệnh án</label>
 								<div class="help-block with-errors"></div>
 							</div>
 							<div class="form-group">
@@ -155,7 +153,7 @@
 									name="Loai" required> <label class="label-control">Loại</label>
 								<div class="help-block with-errors"></div>
 							</div>
-							<!-- end of submit form -->			
+							<!-- end of submit form -->
 						</div>
 						<!-- end of col -->
 						<div class="col-lg-4">
@@ -163,67 +161,103 @@
 							<!-- Submit Form -->
 							<div class="form-group">
 								<input type="text" class="form-control-input" id="rname"
-									name="MSXQuang" required> <label class="label-control">Mã số XQuang</label>
+									name="MSXQuang" required> <label class="label-control">Mã
+									số XQuang</label>
 								<div class="help-block with-errors"></div>
 							</div>
 							<div class="form-group">
 								<input type="text" class="form-control-input" id="rname"
-									name="SoXQuang" required> <label class="label-control">Số XQuang</label>
+									name="SoXQuang" required> <label class="label-control">Số
+									XQuang</label>
 								<div class="help-block with-errors"></div>
 							</div>
 							<div class="form-group">
 								<input type="date" class="form-control-input" id="rname"
-									name="ThoiGian" required> <label class="label-control">Thời gian</label>
+									name="ThoiGian" required> <label class="label-control">Thời
+									gian</label>
 								<div class="help-block with-errors"></div>
 							</div>
 							<div class="form-group">
 								<input type="text" class="form-control-input" id="rname"
-									name="ChuanDoanXQuang" required> <label class="label-control">Chẩn đoán</label>
+									name="ChuanDoanXQuang" required> <label
+									class="label-control">Chẩn đoán</label>
 								<div class="help-block with-errors"></div>
 							</div>
 							<div class="form-group">
 								<input type="text" class="form-control-input" id="rname"
-								name="YeuCauChup"	required> <label class="label-control">Yêu cầu chụp</label>
+									name="YeuCauChup" required> <label
+									class="label-control">Yêu cầu chụp</label>
 								<div class="help-block with-errors"></div>
 							</div>
 							<div class="form-group">
 								<input type="text" class="form-control-input" id="rname"
-								 name="KetQuaChup"	required> <label class="label-control">Kết quả chụp</label>
+									name="KetQuaChup" required> <label
+									class="label-control">Kết quả chụp</label>
 								<div class="help-block with-errors"></div>
 							</div>
 							<div class="form-group">
-							 	<input type="file" name="imageXQuang" multiple="multiple"  class="form-control-input" id="rname"/>s
+								<input type="file" name="imageXQuang" multiple="multiple"
+									class="form-control-input" id="rname" />s
 							</div>
-							<!-- end of submit form -->	
-							
-							
+							<!-- end of submit form -->
+
+
 							<label>Thông tin hợp đồng</label>
 							<!-- Submit Form -->
 
 							<div class="form-group">
 								<input type="text" class="form-control-input" id="rname"
-									 required> <label class="label-control">Danh sách tham gia chẩn đoán</label>
+									required> <label class="label-control">Danh
+									sách tham gia chẩn đoán</label>
 								<div class="help-block with-errors"></div>
 							</div>
 							<div class="form-group">
 								<input type="text" class="form-control-input" id="rname"
-									name="threshold" required> <label class="label-control">Ngưỡng ủy quyền</label>
+									name="threshold" required> <label class="label-control">Ngưỡng
+									ủy quyền</label>
 								<div class="help-block with-errors"></div>
 							</div>
 							<div class="form-group">
 								<input type="text" class="form-control-input" id="rname"
-									name="ChuanDoanBenhAn" required> <label class="label-control">Chẩn đoán (bệnh)</label>
+									name="ChuanDoanBenhAn" required> <label
+									class="label-control">Chẩn đoán (bệnh)</label>
 								<div class="help-block with-errors"></div>
 							</div>
 							<div class="form-group">
-								<button type="submit" value="Submit" class="form-control-submit-button">Đồng ý</button>
+								<button type="submit" value="Submit"
+									class="form-control-submit-button">Đồng ý</button>
 							</div>
 							<!-- end of submit form -->
 						</div>
 						<!-- end of col -->
+						<!-- Danh sach tham gia hop dong thong minh -->
 						<div class="col-lg-4">
-							
-
+							<label>Thêm các bên liên quan của hợp đồng</label>
+							<div class="form-group">
+								<label for="comment">Thành viên:</label>
+								<textarea class="form-control" rows="5" id="danhsachThanhVien"></textarea>
+							</div>
+							<div class="btn-group">
+								<button type="button" class="btn btn-secondary">Chọn để xem</button>
+								<button type="button"
+									class="btn btn-secondary dropdown-toggle dropdown-toggle-split"
+									id="dropdownMenuReference" data-toggle="dropdown"
+									aria-haspopup="true" aria-expanded="false"
+									data-reference="parent">
+								</button>
+								<div class="dropdown-menu"
+									aria-labelledby="dropdownMenuReference">
+									<a class="dropdown-item MyMemeber" >adhajskdhakjsdhajksdhakjsdhkajsdhaksjhdakjsd</a> 
+									<a class="dropdown-item MyMemeber">Another action</a>
+								</div>
+							</div>
+							<div id="data_table">
+								<h3>Bệnh viện <span id="keyBenhVien">asdasdadasdadasd</span></h3>
+								<h4>Khả năng khám bệnh</h4>	
+								<h1></h1>							
+								<h4>Khả năng xét nghiệm</h4>
+								<button type="button" id="Inser_btn" class="btn btn-primary">Insert Data</button>
+							</div>
 						</div>
 						<!-- end of col -->
 					</div>
@@ -254,23 +288,23 @@
 									giao dịch ▼</button>
 								<div class="dropdown-menu" style="text-decoration: none"
 									aria-labelledby="dropdownMenuButton">
-									<a class="dropdown-item" style="text-decoration: none" href="getNeedPermission">
-										Giao dịch cần xác thực 
-									</a> 
-									<a class="dropdown-item" style="text-decoration: none" href="getPermitted">
-										Giao dịch đã xác thực 
-									</a> 								
+									<a class="dropdown-item" style="text-decoration: none"
+										href="getNeedPermission"> Giao dịch cần xác thực </a> <a
+										class="dropdown-item" style="text-decoration: none"
+										href="getPermitted"> Giao dịch đã xác thực </a>
 								</div>
 							</div>
 
 
 							<div class="card" id="style-2">
 								<div class="card-block-2">
-									<ul class="task-list" th:each ="transaction : ${listTransaction}">
+									<ul class="task-list"
+										th:each="transaction : ${listTransaction}">
 										<li><i class="task-icon bg-c-green"></i> <a
-											th:if="${transaction!= null}" th:utext="${transaction.nameTransaction}"
-											href="getDetailTransaction">...<span class="float-right text-muted">14
-													MAY</span>
+											th:if="${transaction!= null}"
+											th:utext="${transaction.nameTransaction}"
+											href="getDetailTransaction">...<span
+												class="float-right text-muted">14 MAY</span>
 										</a>
 									</ul>
 								</div>
@@ -289,15 +323,21 @@
 									<ul class="task-list">
 										<li>
 											<h6>Tên giao dịch:</h6>
-											<p th:if="${detailTransaction != null}" th:text="${detailTransaction.nameTransaction}" class="text-muted">...</p>
+											<p th:if="${detailTransaction != null}"
+												th:text="${detailTransaction.nameTransaction}"
+												class="text-muted">...</p>
 										</li>
 										<li>
 											<h6>Tên giao dịch:</h6>
-											<p th:if="${detailTransaction != null}" th:text="${detailTransaction.nameTransaction}" class="text-muted">...</p>
+											<p th:if="${detailTransaction != null}"
+												th:text="${detailTransaction.nameTransaction}"
+												class="text-muted">...</p>
 										</li>
 										<li>
 											<h6>Tên giao dịch:</h6>
-											<p th:if="${detailTransaction != null}" th:text="${detailTransaction.nameTransaction}" class="text-muted">...</p>
+											<p th:if="${detailTransaction != null}"
+												th:text="${detailTransaction.nameTransaction}"
+												class="text-muted">...</p>
 										</li>
 									</ul>
 								</div>
@@ -305,13 +345,13 @@
 
 							<div class="row">
 								<div class="col-lg-12">
-									<a th:if="${detailTransaction != null}" th:href="@{/permitTransaction/__${detailTransaction.nameTransaction}__}" class="btn btn-primary" style="color:white; text-decoration: none;">
-										Đồng ý
+									<a th:if="${detailTransaction != null}"
+										th:href="@{/permitTransaction/__${detailTransaction.nameTransaction}__}"
+										class="btn btn-primary"
+										style="color: white; text-decoration: none;"> Đồng ý </a> <span>
+										<a href="#" class="btn btn-danger"
+										style="color: white; text-decoration: none"> Không đồng ý
 									</a>
-									<span>
-										<a href="#" class="btn btn-danger" style="color:white; text-decoration: none">
-											Không đồng ý
-										</a>
 									</span>
 								</div>
 							</div>
@@ -335,57 +375,58 @@
 
 
 	<!-- Modal -->
-	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	  <div class="modal-dialog" role="document">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-	          <span aria-hidden="true">&times;</span>
-	        </button>
-	      </div>
-	      <div class="modal-body">
-	      
-	  <!-- Bat dau Form Dang Ky -->
-	  <form th:action="@{/dangkyKhaNangKham}" th:object="${ExamAndAnalysis}" enctype="multipart/form-data" method="POST">
-		<div class="form-group col-md-4">
-	      <label for="inputState">Khả năng khám</label>
-			<div class="form-check">
-			  <input class="form-check-input" type="checkbox" th:value="camcum" name="khaNangKham" id="defaultCheck1">
-			  <label class="form-check-label" for="defaultCheck1">
-			    Cảm cúm
-			  </label>
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+
+					<!-- Bat dau Form Dang Ky -->
+					<form th:action="@{/dangkyKhaNangKham}"
+						th:object="${ExamAndAnalysis}" enctype="multipart/form-data"
+						method="POST">
+						<div class="form-group col-md-4">
+							<label for="inputState">Khả năng khám</label>
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox"
+									th:value="camcum" name="khaNangKham" id="defaultCheck1">
+								<label class="form-check-label" for="defaultCheck1"> Cảm
+									cúm </label>
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" th:value="ABC"
+									name="khaNangKham" id="defaultCheck1"> <label
+									class="form-check-label" for="defaultCheck1"> ABC </label>
+							</div>
+						</div>
+						<div class="form-group col-md-4">
+							<label for="inputState">Khả năng xét nghiệm</label>
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" th:value="mau"
+									name="khaNangXetNghiem" id="defaultCheck1"> <label
+									class="form-check-label" for="defaultCheck1"> Máu </label>
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" th:value="abc"
+									name="khaNangXetNghiem" id="defaultCheck1"> <label
+									class="form-check-label" for="defaultCheck1"> CDF </label>
+							</div>
+						</div>
+
+						<button type="submit" class="btn btn-primary">Đồng ý</button>
+					</form>
+					<!-- Ket Thuc Form  -->
+				</div>
 			</div>
-			<div class="form-check">
-			  <input class="form-check-input" type="checkbox" th:value="ABC" name="khaNangKham" id="defaultCheck1">
-			  <label class="form-check-label" for="defaultCheck1">
-			    ABC
-			  </label>
-			</div>
-	    </div>
-		<div class="form-group col-md-4">
-			<label for="inputState">Khả năng xét nghiệm</label>
-			<div class="form-check">
-			  <input class="form-check-input" type="checkbox" th:value="mau" name="khaNangXetNghiem" id="defaultCheck1">
-			  <label class="form-check-label" for="defaultCheck1">
-			    Máu
-			  </label>
-			</div>
-			<div class="form-check">
-			  <input class="form-check-input" type="checkbox" th:value="abc" name="khaNangXetNghiem" id="defaultCheck1">
-			  <label class="form-check-label" for="defaultCheck1">
-			    CDF
-			  </label>
-			</div>
-	    </div>
-		 
-		 <button type="submit" class="btn btn-primary">Đồng ý</button>
-	</form>
-   	<!-- Ket Thuc Form  -->          
-      </div>
-    </div>
-  </div>
-</div>
+		</div>
+	</div>
 
 
 
@@ -395,11 +436,11 @@
 	<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
 	<script type="text/javascript" th:src="@{/js/popper.min.js}"></script>
 	<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
-	<script type="text/javascript" th:src="@{/js/jquery.easing.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/jquery.easing.min.js}"></script>  
 	<script type="text/javascript" th:src="@{/js/swiper.min.js}"></script>
 	<script type="text/javascript" th:src="@{/js/jquery.magnific-popup.js}"></script>
-	<script type="text/javascript" th:src="@{/js/scripts.js}"></script>
-
+	<script type="text/javascript" th:src="@{/js/scripts.js}"></script>   
+	<script type="text/javascript" th:src="@{/js/myscript.js}"></script>
 
 </body>
 </html>
