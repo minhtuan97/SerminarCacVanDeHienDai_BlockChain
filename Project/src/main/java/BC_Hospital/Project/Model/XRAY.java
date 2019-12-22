@@ -10,5 +10,5 @@ public class XRAY extends Transation {
 	String ChuanDoan;
 	String YeuCauChup;
 	String KetQuaChup;
-
+	String hashFile;
 }

@@ -76,7 +76,8 @@
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle page-scroll" href="#about"
 					id="navbarDropdown" role="button" aria-haspopup="true"
-					aria-expanded="false" th:if="${node!= null}" th:text="${node.getPublicKeyString().substring(node.getPublicKeyString().length()-10)}">...</a>
+					aria-expanded="false" th:if="${node!= null}" 
+					th:text="${node.getPublicKeyString().substring(node.getPublicKeyString().length()-10)}">...</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 						<a class="dropdown-item" href="terms-conditions.html"><span
 							class="item-text">Đăng xuất</span></a>
@@ -102,8 +103,10 @@
 							</h1>
 							<p class="p-large">Sử dụng Blockchain As A Services để quản
 								lý và chia sẻ dữ liệu công khai, minh bạch</p>
-							<a class="btn-solid-lg page-scroll" href="#SubmitData">Khám
-								phá</a>
+							<!-- Button trigger modal -->
+							<button type="button" class="btn-solid-lg page-scroll" data-toggle="modal" data-target="#exampleModal">
+							  Đăng ký 
+							</button>
 						</div>
 						<!-- end of text-container -->
 					</div>
@@ -128,46 +131,98 @@
 
 
 
-	<!-- Submit Data -->
+	<!-- Tao Smart Contract-->
 	<div id="SubmitData" class="form-1">
 		<div class="container">
 			<div class="form-container">
-				<form id="requestForm" th:action="@{/submit}" th:object="${MyTransaction}" enctype="multipart/form-data" method="POST" data-toggle="validator" data-focus="false">
+				<form id="requestForm" th:action="@{/taoSmartContract}" th:object="${SmartContractForm}" enctype="multipart/form-data" method="POST" data-toggle="validator" data-focus="false">
 					<div class="row">
 						<div class="col-lg-4">
+							<label>Thông tin bệnh án</label>
 							<!-- Submit Form -->
 							<div class="form-group">
 								<input type="text" class="form-control-input" id="rname"
-									 required> <label class="label-control">Tên</label>
+									name="MSBenhAn" required> <label class="label-control">Mã số bệnh án</label>
+								<div class="help-block with-errors"></div>
+							</div>
+							<div class="form-group">
+								<input type="text" class="form-control-input" id="rname"
+									name="SoBenhAn" required> <label class="label-control">Số bệnh án</label>
+								<div class="help-block with-errors"></div>
+							</div>
+							<div class="form-group">
+								<input type="text" class="form-control-input" id="rname"
+									name="Loai" required> <label class="label-control">Loại</label>
 								<div class="help-block with-errors"></div>
 							</div>
 							<!-- end of submit form -->			
 						</div>
 						<!-- end of col -->
 						<div class="col-lg-4">
+							<label>Thông tin XQuang</label>
 							<!-- Submit Form -->
 							<div class="form-group">
 								<input type="text" class="form-control-input" id="rname"
-									required> <label class="label-control">Tên</label>
+									name="MSXQuang" required> <label class="label-control">Mã số XQuang</label>
 								<div class="help-block with-errors"></div>
+							</div>
+							<div class="form-group">
+								<input type="text" class="form-control-input" id="rname"
+									name="SoXQuang" required> <label class="label-control">Số XQuang</label>
+								<div class="help-block with-errors"></div>
+							</div>
+							<div class="form-group">
+								<input type="date" class="form-control-input" id="rname"
+									name="ThoiGian" required> <label class="label-control">Thời gian</label>
+								<div class="help-block with-errors"></div>
+							</div>
+							<div class="form-group">
+								<input type="text" class="form-control-input" id="rname"
+									name="ChuanDoanXQuang" required> <label class="label-control">Chẩn đoán</label>
+								<div class="help-block with-errors"></div>
+							</div>
+							<div class="form-group">
+								<input type="text" class="form-control-input" id="rname"
+								name="YeuCauChup"	required> <label class="label-control">Yêu cầu chụp</label>
+								<div class="help-block with-errors"></div>
+							</div>
+							<div class="form-group">
+								<input type="text" class="form-control-input" id="rname"
+								 name="KetQuaChup"	required> <label class="label-control">Kết quả chụp</label>
+								<div class="help-block with-errors"></div>
+							</div>
+							<div class="form-group">
+							 	<input type="file" name="imageXQuang" multiple="multiple"  class="form-control-input" id="rname"/>s
 							</div>
 							<!-- end of submit form -->	
-						</div>
-						<!-- end of col -->
-						<div class="col-lg-4">
-
+							
+							
+							<label>Thông tin hợp đồng</label>
 							<!-- Submit Form -->
 
 							<div class="form-group">
 								<input type="text" class="form-control-input" id="rname"
-									name="nameTransaction" required> <label class="label-control">Tên giao dịch</label>
+									 required> <label class="label-control">Danh sách tham gia chẩn đoán</label>
 								<div class="help-block with-errors"></div>
 							</div>
-
+							<div class="form-group">
+								<input type="text" class="form-control-input" id="rname"
+									name="threshold" required> <label class="label-control">Ngưỡng ủy quyền</label>
+								<div class="help-block with-errors"></div>
+							</div>
+							<div class="form-group">
+								<input type="text" class="form-control-input" id="rname"
+									name="ChuanDoanBenhAn" required> <label class="label-control">Chẩn đoán (bệnh)</label>
+								<div class="help-block with-errors"></div>
+							</div>
 							<div class="form-group">
 								<button type="submit" value="Submit" class="form-control-submit-button">Đồng ý</button>
 							</div>
 							<!-- end of submit form -->
+						</div>
+						<!-- end of col -->
+						<div class="col-lg-4">
+							
 
 						</div>
 						<!-- end of col -->
@@ -279,7 +334,58 @@
 	<!-- end of Browse -->
 
 
-
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	      
+	  <!-- Bat dau Form Dang Ky -->
+	  <form th:action="@{/dangkyKhaNangKham}" th:object="${ExamAndAnalysis}" enctype="multipart/form-data" method="POST">
+		<div class="form-group col-md-4">
+	      <label for="inputState">Khả năng khám</label>
+			<div class="form-check">
+			  <input class="form-check-input" type="checkbox" th:value="camcum" name="khaNangKham" id="defaultCheck1">
+			  <label class="form-check-label" for="defaultCheck1">
+			    Cảm cúm
+			  </label>
+			</div>
+			<div class="form-check">
+			  <input class="form-check-input" type="checkbox" th:value="ABC" name="khaNangKham" id="defaultCheck1">
+			  <label class="form-check-label" for="defaultCheck1">
+			    ABC
+			  </label>
+			</div>
+	    </div>
+		<div class="form-group col-md-4">
+			<label for="inputState">Khả năng xét nghiệm</label>
+			<div class="form-check">
+			  <input class="form-check-input" type="checkbox" th:value="mau" name="khaNangXetNghiem" id="defaultCheck1">
+			  <label class="form-check-label" for="defaultCheck1">
+			    Máu
+			  </label>
+			</div>
+			<div class="form-check">
+			  <input class="form-check-input" type="checkbox" th:value="abc" name="khaNangXetNghiem" id="defaultCheck1">
+			  <label class="form-check-label" for="defaultCheck1">
+			    CDF
+			  </label>
+			</div>
+	    </div>
+		 
+		 <button type="submit" class="btn btn-primary">Đồng ý</button>
+	</form>
+   	<!-- Ket Thuc Form  -->          
+      </div>
+    </div>
+  </div>
+</div>
 
 
 

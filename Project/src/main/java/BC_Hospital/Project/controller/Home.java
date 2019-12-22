@@ -22,7 +22,9 @@ import BC_Hospital.Project.DPaaS.DataManagement.Offchain;
 import BC_Hospital.Project.DPaaS.DataManagement.Onchain;
 import BC_Hospital.Project.Model.BlockOffChain;
 import BC_Hospital.Project.Model.BlockOnChain;
+import BC_Hospital.Project.Model.ExamAndAnalysis;
 import BC_Hospital.Project.Model.Node;
+import BC_Hospital.Project.Model.SmartContractForm;
 import BC_Hospital.Project.repository.BlockOffChainRepository;
 import ch.qos.logback.core.util.FileUtil;
 
@@ -192,5 +194,35 @@ public class Home {
 		return "account";
 	}
 
+	
+	// Dang ky kha nang kham cua benh vien
+	@RequestMapping("/dangkyKhaNangKham")
+	public String dangKyKhaNangKham(Model model, @ModelAttribute("examAndAnalysis") ExamAndAnalysis ability) {
+
+			System.out.println(ability.getKhaNangKham().get(0));
+			System.out.println(ability.getKhaNangXetNghiem().get(0));
+
+//		model.addAttribute("transaction", tenTransaction);
+		
+		
+		return "index";
+	}
+	
+	
+	// Dang ky kha nang kham cua benh vien
+	@RequestMapping("/taoSmartContract")
+	public String taoSmartContract(Model model, @ModelAttribute("smartContractForm") SmartContractForm smartContract) {
+
+			System.out.println(smartContract.ChuanDoanBenhAn);
+			System.out.println(smartContract.threshold);
+			System.out.println(smartContract.ThoiGian);
+
+//		model.addAttribute("transaction", tenTransaction);
+		
+		
+		return "index";
+	}
+	
+	
 
 }
