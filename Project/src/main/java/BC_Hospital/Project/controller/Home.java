@@ -27,6 +27,7 @@ import BC_Hospital.Project.Model.Node;
 import BC_Hospital.Project.Model.SmartContractForm;
 import BC_Hospital.Project.repository.BlockOffChainRepository;
 import ch.qos.logback.core.util.FileUtil;
+import net.bytebuddy.asm.Advice.This;
 
 
 
@@ -39,6 +40,13 @@ public class Home {
 	private Onchain aOnchain;
 	
 	public List<MyTransaction> listTransaction = new ArrayList<MyTransaction>();
+	private String publicKey;
+	private String privateKey;
+	
+	private void addKeyToModel(Model model) {
+		model.addAttribute("publicKey", publicKey);
+		model.addAttribute("privateKey", privateKey);
+	}
 
 	@RequestMapping("/demo")
     @ResponseBody
@@ -64,21 +72,13 @@ public class Home {
 	// Login
 	@RequestMapping("/home")
 	public String login(Model model, @ModelAttribute("KeyData") KeyData keyData) {
-
-		try {}
-		catch (Exception e) {
-			return "login";
-		}
-		
-//		String name = personForm.getTen();
-//		String publicKey = personForm.getPublicKey();		
-//		PersonForm newPerson = new PersonForm();
-//		newPerson.setTen(name);
-//		newPerson.setPublicKey(publicKey);
 		
 		Node node = new Node(keyData.publicKey, keyData.privateKey);
+		this.publicKey = keyData.publicKey;
+		this.privateKey = keyData.privateKey;
 
-		model.addAttribute("node", node);
+		//model.addAttribute("node", node);
+		addKeyToModel(model);
 		
 		
 		//Get Transaction
@@ -195,16 +195,18 @@ public class Home {
 	}
 
 	
-	// Dang ky kha nang kham cua benh vien
-	@RequestMapping("/dangkyKhaNangKham")
-	public String dangKyKhaNangKham(Model model, @ModelAttribute("examAndAnalysis") ExamAndAnalysis ability) {
+	// Dang ky kha nang kham cua benh vien dangkyKhaNangKham
+	@RequestMapping("/registratioOfExaminationAbility")
+	public String registratioOfExaminationAbility(Model model,
+			@ModelAttribute("examAndAnalysis") ExamAndAnalysis ability) {
 
-			System.out.println(ability.getKhaNangKham().get(0));
-			System.out.println(ability.getKhaNangXetNghiem().get(0));
-
+		//System.out.println(String.join(",", ability.getKhaNangKham()));
+		System.out.println(ability.xetNghiemMau);
+		//System.out.println(ability.getKhaNangXetNghiem().get(0));
 //		model.addAttribute("transaction", tenTransaction);
 		
 		
+		addKeyToModel(model);
 		return "index";
 	}
 	
