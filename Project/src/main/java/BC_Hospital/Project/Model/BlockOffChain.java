@@ -16,7 +16,7 @@ public class BlockOffChain {
 	@Column(name = "file", unique = true)
 	private byte[] file;
 	
-	private BlockOffChain() {}
+	public BlockOffChain() {}
 	
 	public BlockOffChain(String hashfile, byte[] file) {
 		this.hashfile = hashfile;

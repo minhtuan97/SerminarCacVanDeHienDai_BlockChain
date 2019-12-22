@@ -1,5 +1,6 @@
 package BC_Hospital.Project.DPaaS.DataManagement;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,8 @@ public class Onchain {
 	public void createContract() {}
 	
 	// Lưu Data vào OnChain : Khởi tạo một Block rồi đưa vào chuỗi
-	public void storeOnChainData(String attribute, String ciphertext, BlockOnChain blockOnChain) {
+	//public void storeOnChainData(String attribute, String ciphertext, BlockOnChain blockOnChain) {
+	public void storeOnChainData(BlockOnChain blockOnChain) {
 		blockOnChainRepository.save(blockOnChain);
 	    System.out.println("storeOnChainData sucessfully"); 
 	}
@@ -31,7 +33,17 @@ public class Onchain {
 	// Lấy Data từ OnChain
 	public Optional<BlockOnChain> obtainOnChainData(String hash) {
 		return blockOnChainRepository.findByhash(hash);
-		
-
 	}	
+	
+	//Lấy Block liền trước
+	public BlockOnChain SelectPreHash() {
+		List<BlockOnChain> listonChains= blockOnChainRepository.findTop1ByOrderByTimestampDesc();
+		BlockOnChain tempBlockOnChain;
+		for(BlockOnChain a: listonChains) {
+			tempBlockOnChain= new BlockOnChain(a.getHash(), a.getPrevhash(), a.getData(),a.getTimestamp());
+			return tempBlockOnChain;
+		}
+		return null;
+		
+	}
 }

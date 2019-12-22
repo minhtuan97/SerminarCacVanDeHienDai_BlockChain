@@ -8,10 +8,15 @@
 	<form th:action="@{/saveFile}" th:object="${KeyData}" enctype="multipart/form-data"
 					method="POST">
 		<h5>Public key:</h5>	
-		<input type="text" th:value="${publicKey}" name="publicKey"></input>
+		<input type="text" th:value="${publicKey}" name="publicKey" size="100"></input>
 		<h5>Private key:</h5>
-		<input type="text" th:value="${privateKey}" name="privateKey"></input>
-		<input  type="submit" value="Submit"/>
+		<input type="text" th:value="${privateKey}" name="privateKey" size="100"></input>
+		<div>
+			<input type="submit" value="Submit"/>
+		</div>
+		<h1>Lưu ý:</h1> 
+		<h2>1. Cần lưu trữ bộ publickey và privatekey này cẩn thận vì đây chính là cặp mã định danh của chính bạn trong hệ thống.</h2>
+		<h2>2. Không chia sẻ cho bất cứ ai Privatekey của bạn</h2>
 	</form>
 </body>
 </html>
