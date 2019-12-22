@@ -12,12 +12,16 @@ $(".MyMemeber").click(function(){
 		$("#data_table").show();
 	}
 	
+	var valueATag = $(this).text();
 	
-
+	$("#keyBenhVien").text(valueATag);
+	
+	$("#listKhaNangKham").text("ashjdakjsdhakjsdhkjh");
+	$("#listKhaXetNghiem").text("ABCJjkashdjksfhskjf");
 });
 
 
-
+//Insert thanh vien tham gia vào TextBox
 $(function(){
     $('#Inser_btn').click(function(){
     	var oldText = $("#danhsachThanhVien").val();
