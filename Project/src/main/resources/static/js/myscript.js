@@ -12,7 +12,9 @@ $(".MyMemeber").click(function(){
 		$("#data_table").show();
 	}
 	
+	var valueATag = $(this).text();
 	
+	$("#keyBenhVien").text(valueATag);
 
 });
 
