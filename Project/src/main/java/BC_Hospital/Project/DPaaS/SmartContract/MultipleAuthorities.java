@@ -62,7 +62,8 @@ public class MultipleAuthorities extends Transation {
 	}
 	
 	public void agreeSignature(String publicKey, Boolean agree) {
-		agreeState.put(publicKey, agree?AgreeState.AGREED:AgreeState.DECLINED);
+		AgreeState as = agree?AgreeState.AGREED:AgreeState.DECLINED;
+		agreeState.put(publicKey, as);
 		if(agreeResult()){
 			agreePermission = true;
 		}

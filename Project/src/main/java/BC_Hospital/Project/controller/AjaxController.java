@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -119,9 +120,9 @@ public class AjaxController {
 		return null;
 	}
 	
-	@RequestMapping("/ajax/updateAgree")
+	@RequestMapping(value="/ajax/updateAgree")
 	@ResponseBody
-	public String updateAgree(HttpServletRequest request) {
+	public boolean updateAgree(HttpServletRequest request) {
 		
 		this.publicKey = request.getParameter("publicKey");
 		this.privateKey = request.getParameter("privateKey");
@@ -130,22 +131,35 @@ public class AjaxController {
 		String MSBenhAn = request.getParameter("MSBenhAn");
 		Boolean agree = Boolean.parseBoolean(request.getParameter("agreeState"));
 //		AgreeState agreeState = agreement? AgreeState.AGREED:AgreeState.DECLINED;
-		
+		System.out.println(MSBenhAn+", "+agree);
 		//Lấy ra những block mà trường data có chứa mảng smartContracts
-		List<BlockOnChain> listBlock = aOnchain.findByDataContain("\"MSBenhAn\": \""+MSBenhAn+"\"");
+		String searchText= "\"MSBenhAn\":\""+MSBenhAn+"\"";
+		System.out.println(searchText);
+		List<BlockOnChain> listBlock = aOnchain.findByDataContain(searchText);
+	
 		
 		for (BlockOnChain block : listBlock) {
 			JsonObject obj = new JsonParser().parse(block.getData()).getAsJsonObject();
 			JsonArray smartContracts = obj.get("smartContracts").getAsJsonArray();
 //			for (JsonElement elem : smartContracts) {
 			SmartContractForm sc = new Gson().fromJson(smartContracts.get(0), SmartContractForm.class);
-			
+			System.out.println("benhanh:"+sc.getMSBenhAn());
 			if(sc.agreeState.containsKey(publicKey)) {
 				sc.agreeSignature(publicKey, agree);
+				List<SmartContractForm> list = new ArrayList<>();
+				list.add(sc);
+				JsonArray array = new Gson().toJsonTree(list).getAsJsonArray();
+				JsonObject object = new JsonObject();
+				object.add("smartContracts", array);
+				
+				//Thêm dữ liệu vào database Onchain
+				aOnchain.storeOnChainDataDependLastBlock(object);
+				
+				return true;
 			}
 //			}
 		}
 		
-		return "";
+		return false;
 	}
 }

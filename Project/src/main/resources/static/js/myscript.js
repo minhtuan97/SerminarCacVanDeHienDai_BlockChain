@@ -1,6 +1,7 @@
 //Load Trang - An Table Kha Nang Kham Va Xet Nghiem
 var listBenhVien=[];
 var listHopDong=[];
+var giaodichdangxem="";
 
 $( document ).ready(function() {
 	 $("#data_table").hide();
@@ -21,7 +22,7 @@ $( document ).ready(function() {
 	//Gọi hàm ajax lấy ra danh sách hợp đồng
 	searchSmartContract((data)=>{
 		console.log(data);
-		console.log(data.listSCDone[0].ChuanDoanBenhAn);
+		console.log(data.listSCWait[0].ChuanDoanBenhAn);
 		listHopDong = data;
 	});
 });
@@ -106,18 +107,24 @@ $(function() {
 							$("#sectionXacNhan").show();
 						}
 
-						//Loai bo data truoc do
 						$(".danhsachgiaodich").html("");
 						
-						var idGiaodich= "1234";
-						var tenGiaoDich= "ASHKJAHSKJ";
-						var ngaythangnam= "11/12/2019";
 						
-						for (i = 0; i < 4; i++) {
-							$(".danhsachgiaodich")
-									.append(
-											"<li><i class='task-icon bg-c-green'></i> <a onClick='showDiv("+idGiaodich+");'  href='javascript:void(0)'>"+tenGiaoDich+"<span class='float-right text-muted'>"+ngaythangnam+"</span></a></li>");
-						}
+						var publicKeys = "";
+						
+						//Gọi hàm ajax lấy ra danh sách hợp đồng
+						searchSmartContract((data)=>{
+							listhd = data;
+
+							var publicKeys = "";
+							listhd.listSCWait.forEach(element => {
+								publicKeys += "<li><i class='task-icon bg-c-green'></i> <a onClick='showDiv(this)'  href='javascript:void(0)'>"+element.MSBenhAn+"</a></li>";		
+							});
+							
+
+							$(".danhsachgiaodich").append(publicKeys);
+						});
+
 					});
 });
 
@@ -159,18 +166,24 @@ $(function() {
 							$("#sectionXacNhan").hide();
 						}
 
-						//Loai bo data truoc do
 						$(".danhsachgiaodich").html("");
 						
-						var idGiaodich= "997878";
-						var tenGiaoDich= "HHJFKGJKHGJ";
-						var ngaythangnam= "1/1/2019";
 						
-						for (i = 0; i < 4; i++) {
-							$(".danhsachgiaodich")
-									.append(
-											"<li><i class='task-icon bg-c-green'></i> <a onClick='showDiv("+idGiaodich+");'  href='javascript:void(0)'>"+tenGiaoDich+"<span class='float-right text-muted'>"+ngaythangnam+"</span></a></li>");
-						}
+						var publicKeys = "";
+						
+						//Gọi hàm ajax lấy ra danh sách hợp đồng
+						searchSmartContract((data)=>{
+							listhd = data;
+
+							var publicKeys = "";
+							listhd.listSCDone.forEach(element => {
+								publicKeys += "<li><i class='task-icon bg-c-green'></i> <a onClick='showDiv(this)'  href='javascript:void(0)'>"+element.MSBenhAn+"</a></li>";		
+							});
+							
+
+							$(".danhsachgiaodich").append(publicKeys);
+						});
+						
 					});
 });
 
@@ -232,7 +245,7 @@ function updateAgree(MSBenhAn, agreeState, callBack) {
 	var privateKey = $("#privateKey").html();
 
 	$.ajax({
-		type : "POST",
+		type : "GET",
 		contentType : "application/json",
 		url : "/ajax/updateAgree",
 		data : {
@@ -255,67 +268,99 @@ function updateAgree(MSBenhAn, agreeState, callBack) {
 
 //Hien thi chi tiet giao dich
 function showDiv(a){
-	var idGiaoDich = a;
+	var mSBenhAn = $(a).text();;
+	giaodichdangxem = mSBenhAn;
 	
-	//Thông tin bệnh án
-	$("#MSMau").text("Bệnh ABC");
-	$("#SoMau").text("Bệnh ABC");
-	$("#LoaiMau").text("Bệnh ABC");
-	$("#ChuanDoanMau").text("Bệnh ABC");
-	$("#SoLuongHC").text("Bệnh ABC");
-	$("#HuyetSacTo").text("Bệnh ABC");
-	$("#Hematocrit").text("Bệnh ABC");
-	$("#MCV").text("Bệnh ABC");
-	$("#MCH").text("Bệnh ABC");
-	$("#MCHC").text("Bệnh ABC");
-	$("#HCCoNhan").text("Bệnh ABC");
-	$("#HCLuoi").text("Bệnh ABC");
-	$("#SLTieuCau").text("Bệnh ABC");
-	$("#KSVSotRet").text("Bệnh ABC");
-	$("#SLBC").text("Bệnh ABC");
-	$("#TPBC").text("Bệnh ABC");
-	$("#DoanTrungTinh").text("Bệnh ABC");
-	$("#DoanUaAxit").text("Bệnh ABC");
-	$("#DoanUaBazo").text("Bệnh ABC");
-	$("#Mono").text("Bệnh ABC");
-	$("#Lympho").text("Bệnh ABC");
-	$("#TeBaoBT").text("Bệnh ABC");
-	$("#MauLang").text("Bệnh ABC");
-	$("#TGMauChay").text("Bệnh ABC");
-	$("#TGMauDong").text("Bệnh ABC");
-	$("#HeABO").text("Bệnh ABC");
-	$("#HeRh").text("Bệnh ABC");
 	
-	//Thông tin XQuang
-	$("#MSXQuang").text("Bệnh ABC");
-	$("#SoXQuang").text("Bệnh ABC");
-	$("#ThoiGian").text("Bệnh ABC");
-	$("#ChuanDoanXQuang").text("Bệnh ABC");
-	$("#YeuCauChup").text("Bệnh ABC");
-	$("#KetQuaChup").text("Bệnh ABC");
-	$("#hashFile").text("Bệnh ABC");
+	//Gọi hàm ajax lấy ra benh an
+	searchSmartContract((data)=>{
+		listhd = data;
+
+		var publicKeys = "";
+		
+		//Quet da xac thuc
+		listhd.listSCDone.forEach(element => {
+			if(element.MSBenhAn ==mSBenhAn)	{
+				showChiTietBenhAn(element);
+			}
+		});
+		
+		//Quet chua xac thuc
+		listhd.listSCWait.forEach(element => {
+			if(element.MSBenhAn ==mSBenhAn)	{
+				showChiTietBenhAn(element);
+			}
+		});
+
+
+	});
+	
 
 	
 	
 }
 
 
+function showChiTietBenhAn(Element){
 
+	//Thông tin bệnh án
+	$("#MSMau").text(Element.hematology.MS);
+	$("#LoaiMau").text(Element.hematology.Loai);
+	//$("#ChuanDoanMau").text(Element.hematology);
+	$("#SoLuongHC").text(Element.hematology.SoLuongHC);
+	$("#HuyetSacTo").text(Element.hematology.HuyetSacTo);
+	$("#Hematocrit").text(Element.hematology.Hematocrit);
+//	$("#MCV").text(Element.hematology);
+//	$("#MCH").text(Element.hematology);
+//	$("#MCHC").text(Element.hematology);
+//	$("#HCCoNhan").text(Element.hematology);
+//	$("#HCLuoi").text(Element.hematology);
+//	$("#SLTieuCau").text(Element.hematology);
+//	$("#KSVSotRet").text(Element.hematology);
+//	$("#SLBC").text(Element.hematology);
+//	$("#TPBC").text(Element.hematology);
+//	$("#DoanTrungTinh").text(Element.hematology);
+//	$("#DoanUaAxit").text(Element.hematology);
+//	$("#DoanUaBazo").text(Element.hematology);
+//	$("#Mono").text(Element.hematology);
+//	$("#Lympho").text(Element.hematology);
+//	$("#TeBaoBT").text(Element.hematology);
+//	$("#MauLang").text(Element.hematology);
+//	$("#TGMauChay").text(Element.hematology);
+//	$("#TGMauDong").text(Element.hematology);
+//	$("#HeABO").text(Element.hematology);
+//	$("#HeRh").text(Element.hematology); 
+	
+	//Thông tin XQuang
+	$("#MSXQuang").text(Element.xray.MS);
+	$("#SoXQuang").text(Element.xray.So);
+	$("#ThoiGian").text(Element.xray.ThoiGian);
+	$("#ChuanDoanXQuang").text(Element.xray.MS);
+	$("#YeuCauChup").text(Element.xray.YeuCauChup);
+	$("#KetQuaChup").text(Element.xray.KetQuaChup);
+	$("#ChuanDoanBenhAn").text(Element.ChuanDoanBenhAn);
+	
+	searchPicture(Element.xray.hashFile, ()=>{
+		
+		alert("AAA");
+		//$("#hashFile").text(Element.xray.hashFile);
+	});
+	
 
-
-
-
-
-
-
-
-
+}
 
 
 
 $('#khongdongy').on("click", function() {
-	if (document.querySelector('.Tengiaodich') !== null) {
-	    alert("Da ton tai")
-	}
+	updateAgree(giaodichdangxem, false,()=>{
+		alert("Không đồng ý giao dịch");
+	})
 })
+
+$('#dongy').on("click", function() {
+	updateAgree(giaodichdangxem, true,()=>{
+		alert("Đồng ý giao dịch");
+	})
+})
+
 
