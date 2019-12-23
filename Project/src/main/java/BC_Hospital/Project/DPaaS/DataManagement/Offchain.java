@@ -1,5 +1,6 @@
 package BC_Hospital.Project.DPaaS.DataManagement;
 
+import java.sql.Blob;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,7 +19,7 @@ public class Offchain {
 	 @Autowired 
 	 private BlockOffChainRepository blockOffChainRepository;
 	 
-	public void storeOffChainData(String hash, byte[] data) {
+	public void storeOffChainData(String hash, Blob data) {
 		blockOffChainRepository.save(new BlockOffChain(hash, data));	
 		System.out.println("storeOffChainData sucessfully");
 	}

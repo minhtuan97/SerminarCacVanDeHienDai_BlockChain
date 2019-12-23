@@ -2,9 +2,13 @@ package BC_Hospital.Project.controller;
 
 import java.util.List;
 import java.util.Optional;
+
+import javax.sql.rowset.serial.SerialException;
+
 import java.util.List;
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Base64;
@@ -248,7 +252,13 @@ public class Home {
 		smartContract.xray.generateHashFile();
 		
 		//Thêm dữ liệu file vào database OffChain
-		BlockOffChain blockOffChain = new BlockOffChain(smartContract.xray.getHashFile(), smartContract.xray.getFile());
+		BlockOffChain blockOffChain = new BlockOffChain();
+		try {
+			blockOffChain = new BlockOffChain(smartContract.xray.getHashFile(),
+					new javax.sql.rowset.serial.SerialBlob(smartContract.xray.getFile()));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		aOffchain.storeOffChainData(blockOffChain);
 		smartContract.imageXQuang = null;
 		smartContract.xray.setFile(null);

@@ -1,5 +1,7 @@
 package BC_Hospital.Project.Model;
 
+import java.sql.Blob;
+
 import javax.persistence.*;
 
 // Pojo (plain old Java object) là class đại diện cho một Table
@@ -14,11 +16,11 @@ public class BlockOffChain {
 	
 	// Trường data ở dưới đại diện cho cột data của table trong database
 	@Column(name = "file", unique = true, columnDefinition = "MEDIUMBLOB")
-	private byte[] file;
+	private Blob file;
 	
 	public BlockOffChain() {}
 	
-	public BlockOffChain(String hashfile, byte[] file) {
+	public BlockOffChain(String hashfile, Blob file) {
 		this.hashfile = hashfile;
 		this.file = file;
 	}
@@ -31,11 +33,11 @@ public class BlockOffChain {
 		this.hashfile = hashfile;
 	}
 
-	public byte[] getFile() {
+	public Blob getFile() {
 		return file;
 	}
 
-	public void setFile(byte[] file) {
+	public void setFile(Blob file) {
 		this.file = file;
 	}
 

@@ -1,7 +1,10 @@
 package BC_Hospital.Project.controller;
 
 import java.io.Console;
+import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 import javax.persistence.criteria.Predicate.BooleanOperator;
@@ -104,20 +107,29 @@ public class AjaxController {
 	
 	@RequestMapping("/ajax/getPicture")
 	@ResponseBody
-	public byte[] getPicture(HttpServletRequest request) {
+	public String getPicture(HttpServletRequest request) {
 		
 		this.publicKey = request.getParameter("publicKey");
 		this.privateKey = request.getParameter("privateKey");
 		Node node = new Node(this.publicKey, this.privateKey);
 		String fileHash = request.getParameter("fileHash");
 		
-		byte[] file = aOffchain.obtainOffChainData(fileHash).get().getFile();
+		Blob file = aOffchain.obtainOffChainData(fileHash).get().getFile();
+		byte[] fileByte = "".getBytes();
+		try {
+			fileByte = file.getBytes(1, (int) file.length());
+			file.free();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		if(FileComparision.Compare(fileHash, file))
-			return file;
 		
+		System.out.println("file:" +FileComparision.Compare(fileHash, fileByte));
+		if(FileComparision.Compare(fileHash, fileByte))
+			return Base64.getEncoder().encodeToString(fileByte);
 		
-		return null;
+		return "null";
 	}
 	
 	@RequestMapping(value="/ajax/updateAgree")

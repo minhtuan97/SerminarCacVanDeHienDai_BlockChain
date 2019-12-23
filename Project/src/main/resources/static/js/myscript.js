@@ -227,7 +227,7 @@ function searchPicture(fileHash, callBack) {
 			privateKey : privateKey,
 			fileHash: fileHash
 		},
-		dataType : 'json',
+		dataType : 'text',
 		timeout : 100000,
 		success : function(data) {
 			callBack(data);
@@ -340,10 +340,15 @@ function showChiTietBenhAn(Element){
 	$("#KetQuaChup").text(Element.xray.KetQuaChup);
 	$("#ChuanDoanBenhAn").text(Element.ChuanDoanBenhAn);
 	
-	searchPicture(Element.xray.hashFile, ()=>{
+	searchPicture(Element.xray.hashFile, (data)=>{
 		
-		alert("AAA");
+		
 		//$("#hashFile").text(Element.xray.hashFile);
+		console.log(data);
+		if(data!="null")
+			$('#ItemPreview').attr('src', 'data:image/png;base64,'+data);
+		else
+			alert("Ảnh Lỗi!");
 	});
 	
 
