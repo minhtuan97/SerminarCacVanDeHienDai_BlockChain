@@ -194,17 +194,19 @@
 								</div>
 							</div>
 							<div id="data_table">
-								<div class="jumbotron" style="background-color: blue;">
-									<h3>
-										Bệnh viện <span id="keyBenhVien">asdasdadasdadasd</span>
-									</h3>
-									<h4>Khả năng khám bệnh</h4>
-									<h6 id="listKhaNangKham"></h6>
-									<h4>Khả năng xét nghiệm</h4>
-									<h6 id="listKhaXetNghiem"></h6>
-									<button type="button" id="Inser_btn" class="btn btn-primary">Insert
-										Data</button>
+								<div class="jumbotron">
+									<h4>Khả năng khám và xét nghiệm</h4>
+									<p>id: <span id="keyBenhVien">asdasdadasdadasd</span></p>
+									<h6>Khả năng khám bệnh</h6>	
+									<p id="listKhaNangKham"></p>							
+									<h6>Khả năng xét nghiệm</h6>
+									<p id="listKhaXetNghiem"></p>	
+									<button type="button" id="Inser_btn" class="btn btn-info">Thêm vào Smart Contract</button>
 								</div>
+							</div>
+							<div class="form-group" style="margin-top: 5rem;">
+								<button type="submit" value="Submit"
+									class="form-control-submit-button">Tạo Smart Contract</button>
 							</div>
 							<div class="form-group" style="margin-top: 5rem;">
 								<button type="submit" value="Submit"
@@ -321,23 +323,16 @@
 								<div class="dropdown-menu" style="text-decoration: none"
 									aria-labelledby="dropdownMenuButton">
 									<a class="dropdown-item" style="text-decoration: none"
-										href="getNeedPermission"> Giao dịch cần xác thực </a> <a
-										class="dropdown-item" style="text-decoration: none"
-										href="getPermitted"> Giao dịch đã xác thực </a>
+										id="needPermit"> Giao dịch cần xác thực </a> 
+									<a class="dropdown-item" style="text-decoration: none"
+										id="permitted"> Giao dịch đã xác thực </a>
 								</div>
 							</div>
 
 
 							<div class="card" id="style-2">
 								<div class="card-block-2">
-									<ul class="task-list"
-										th:each="transaction : ${listTransaction}">
-										<li><i class="task-icon bg-c-green"></i> <a
-											th:if="${transaction!= null}"
-											th:utext="${transaction.nameTransaction}"
-											href="getDetailTransaction">...<span
-												class="float-right text-muted">14 MAY</span>
-										</a>
+									<ul class="task-list danhsachgiaodich">
 									</ul>
 								</div>
 							</div>
@@ -348,40 +343,164 @@
 						<div class="col-lg-6">
 							<div class="card" id="style-2">
 								<div class="text-center sticky-top top-header-card">
-									<h4>Chi tiết giao dịch</h4>
+									<h4 id="test">Chi tiết giao dịch</h4>
 								</div>
 
 								<div class="card-block">
 									<ul class="task-list">
 										<li>
-											<h6>Tên giao dịch:</h6>
-											<p th:if="${detailTransaction != null}"
-												th:text="${detailTransaction.nameTransaction}"
-												class="text-muted">...</p>
+											<h5 style="color:#0072FF">Thông tin bệnh án</h5>
 										</li>
 										<li>
-											<h6>Tên giao dịch:</h6>
-											<p th:if="${detailTransaction != null}"
-												th:text="${detailTransaction.nameTransaction}"
-												class="text-muted">...</p>
+											<h6>MSMau:</h6>
+											<p id="MSMau"></p>
 										</li>
 										<li>
-											<h6>Tên giao dịch:</h6>
-											<p th:if="${detailTransaction != null}"
-												th:text="${detailTransaction.nameTransaction}"
-												class="text-muted">...</p>
+											<h6>SoMau:</h6>
+											<p id="SoMau"></p>
+										</li>
+										<li>
+											<h6>Thông tin XQuang:</h6>
+											<p id="LoaiMau"></p>
+										</li>
+										<li>
+											<h6>Chuẩn đoán:</h6>
+											<p id="ChuanDoanMau"></p>
+										</li>
+										<li>
+											<h6>Số lượng hồng cầu:</h6>
+											<p id="SoLuongHC"></p>
+										</li>
+										<li>
+											<h6>Huyết sắc tố:</h6>
+											<p id="HuyetSacTo"></p>
+										</li>
+										<li>
+											<h6>Hematocrit:</h6>
+											<p id="Hematocrit"></p>
+										</li>
+										<li>
+											<h6>MCV:</h6>
+											<p id="MCV"></p>
+										</li>
+										<li>
+											<h6>MCH:</h6>
+											<p id="MCH"></p>
+										</li>
+										<li>
+											<h6>MCHC:</h6>
+											<p id="MCHC"></p>
+										</li>
+										<li>
+											<h6>HCCoNhan:</h6>
+											<p id="HCCoNhan"></p>
+										</li>
+										<li>
+											<h6>HCLuoi:</h6>
+											<p id="HCLuoi"></p>
+										</li>
+										<li>
+											<h6>SLTieuCau:</h6>
+											<p id="SLTieuCau"></p>
+										</li>
+										<li>
+											<h6>KSVSotRet:</h6>
+											<p id="KSVSotRet"></p>
+										</li>
+										<li>
+											<h6>SLBC:</h6>
+											<p id="SLBC"></p>
+										</li>
+										<li>
+											<h6>TPBC:</h6>
+											<p id="TPBC"></p>
+										</li>
+										<li>
+											<h6>DoanTrungTinh:</h6>
+											<p id="DoanTrungTinh"></p>
+										</li>
+										<li>
+											<h6>DoanUaAxit:</h6>
+											<p id="DoanUaAxit"></p>
+										</li>
+										<li>
+											<h6>DoanUaBazo:</h6>
+											<p id="DoanUaBazo"></p>
+										</li>
+										<li>
+											<h6>Mono:</h6>
+											<p id="Mono"></p>
+										</li>
+										<li>
+											<h6>Lympho:</h6>
+											<p id="Lympho"></p>
+										</li>
+										<li>
+											<h6>TeBaoBT:</h6>
+											<p id="TeBaoBT"></p>
+										</li>
+										<li>
+											<h6>MauLang:</h6>
+											<p id="MauLang"></p>
+										</li>
+										<li>
+											<h6>TGMauChay:</h6>
+											<p id="TGMauChay"></p>
+										</li>
+										<li>
+											<h6>TGMauDong:</h6>
+											<p id="TGMauDong"></p>
+										</li>
+										<li>
+											<h6>HeABO:</h6>
+											<p id="HeABO"></p>
+										</li>
+										<li>
+											<h6>HeRh:</h6>
+											<p id="HeRh"></p>
+										</li>
+										
+										<li>
+											<h5 style="color:#0072FF">Thông tin XQuang</h5>
+										</li>
+										<li>
+											<h6>MSXQuang:</h6>
+											<p id="MSXQuang"></p>
+										</li>
+										<li>
+											<h6>SoXQuang:</h6>
+											<p id="SoXQuang"></p>
+										</li>
+										<li>
+											<h6>ThoiGian:</h6>
+											<p id="ThoiGian"></p>
+										</li>
+										<li>
+											<h6>ChuanDoanXQuang:</h6>
+											<p id="ChuanDoanXQuang"></p>
+										</li>
+										<li>
+											<h6>YeuCauChup:</h6>
+											<p id="YeuCauChup"></p>
+										</li>
+										<li>
+											<h6>KetQuaChup:</h6>
+											<p id="KetQuaChup"></p>
+										</li>
+										<li>
+											<h6>hashFile:</h6>
+											<p id="hashFile"></p>
 										</li>
 									</ul>
 								</div>
 							</div>
 
-							<div class="row">
+							<div class="row" id="sectionXacNhan">
 								<div class="col-lg-12">
-									<a th:if="${detailTransaction != null}"
-										th:href="@{/permitTransaction/__${detailTransaction.nameTransaction}__}"
-										class="btn btn-primary"
-										style="color: white; text-decoration: none;"> Đồng ý </a> <span>
-										<a href="#" class="btn btn-danger"
+									<a  class="btn btn-primary" href='javascript:void(0)' id="dongy"
+										style="color: white; text-decoration: none;"> Đồng ý </a> 
+										<span>
+										<a href='javascript:void(0)' class="btn btn-danger" id="khongdongy"
 										style="color: white; text-decoration: none"> Không đồng ý
 									</a>
 									</span>

@@ -1,24 +1,48 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>Tạo Key</title>
 <!-- Favicon  -->
 <link rel="icon" href="images/favicon.png">
 </head>
 <body>
+	<h4 style="text-align: center; font-weight:700; font-size: 25px; color:#0072FF;">Đã tạo khóa thành công!!!</h4>
 	<form th:action="@{/saveFile}" th:object="${KeyData}" enctype="multipart/form-data"
 					method="POST">
-		<h5>Public key:</h5>	
-		<input type="text" th:value="${publicKey}" name="publicKey" size="100"></input>
-		<h5>Private key:</h5>
-		<input type="text" th:value="${privateKey}" name="privateKey" size="100"></input>
-		<div>
-			<input type="submit" value="Submit"/>
-		</div>
-		<h1>Lưu ý:</h1> 
-		<h2>1. Cần lưu trữ bộ Public key và Private key này cẩn thận vì đây chính là cặp mã định danh của chính bạn trong hệ thống!</h2>
-		<h2>2. Không chia sẻ cho bất cứ ai Private key của bạn.</h2>
+		<h5 style="font-size: 18px;">Public key:</h5>	
+		<span>
+			<input type="text" id="publicKey" style="width: 80%;" th:value="${publicKey}" name="publicKey"></input>
+			<a style="color:blue;" onclick="copyText(1)">Copy text</a>
+		</span>
+		<h5 style="font-size: 18px;">Private key:</h5>
+		<span>
+			<input type="text" id="privateKey" style="width: 80%;" th:value="${privateKey}" name="privateKey"></input>
+			<a style="color:blue;" onclick="copyText(2)">Copy text</a>
+		</span>
+		<h6 style="color:red; font-size: 20px; "><i>*Lưu ý: Hãy lưu thông tin PrivateKey và PublicKey để đăng nhập. Chúng tôi sẽ không khôi phục lại tài khoản nếu bạn mất thông tin này</i>
+		</h6>
+		<a href='javascript:void(0)' onclick="javascript:window.history.back(-1);return false;" style="color:blue"><i>Quay lại trang đăng nhập</i></a>
 	</form>
+	
+	
+	
+	<script>
+		function copyText(a) {
+			var copyText
+			if(a===1){
+				copyText = document.getElementById("publicKey");
+			}else{
+				copyText = document.getElementById("privateKey");
+			}
+
+		  copyText.select();
+
+
+		  document.execCommand("copy");
+
+		}
+		
+	</script>
 </body>
 </html>
