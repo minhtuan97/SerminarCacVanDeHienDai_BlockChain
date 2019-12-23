@@ -10,7 +10,9 @@ import java.util.Set;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public class SmartContractForm {
+import BC_Hospital.Project.DPaaS.SmartContract.MultipleAuthorities;
+
+public class SmartContractForm extends MultipleAuthorities{
 	
 	//Thong tin benh an - 8 attributes
 	public String MSBenhAn;
@@ -34,10 +36,7 @@ public class SmartContractForm {
 	public XRAY xray;
 	public MultipartFile[] imageXQuang;
 	
-	//Thong tin hop dong
-	public Set<String> authority;
-	public Map<String, AgreeState> agreeState;
-	public String threshold;
+
 	public String ChuanDoanBenhAn;
 	
 	public SmartContractForm() {
@@ -103,10 +102,10 @@ public class SmartContractForm {
 			agreeState.put(a, AgreeState.NOTSEEN);
 		}
 	}
-	public String getThreshold() {
+	public int getThreshold() {
 		return threshold;
 	}
-	public void setThreshold(String threshold) {
+	public void setThreshold(int threshold) {
 		this.threshold = threshold;
 	}
 	public String getChuanDoanBenhAn() {

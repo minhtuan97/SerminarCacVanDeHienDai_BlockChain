@@ -1,26 +1,30 @@
 package BC_Hospital.Project.DPaaS.SmartContract;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
+import BC_Hospital.Project.Model.AgreeState;
 import BC_Hospital.Project.Model.Transation;
 
 public class MultipleAuthorities extends Transation {
 	
-	protected List<String> authority;
-	protected int threshold;
+	//Thong tin hop dong
+	public Set<String> authority;
+	public Map<String, AgreeState> agreeState;
+	public int threshold;
 	
-	public String publicKey = "msg.sender";
+	public String publicKey;// = "msg.sender";
 	
 	protected boolean agreeing;
 	protected String agreeRequester;
 	protected String agreeRequest;
 	protected boolean agreePermission;
-	protected Map<String, Boolean> agreeState;
 	protected boolean init;
 
-	public void initial(List<String> authority, int threshold) {
+	public void initial(Set<String> authority, int threshold) {
 		if(init) return;
 		
 		this.authority = authority;
@@ -35,7 +39,7 @@ public class MultipleAuthorities extends Transation {
 		agreePermission = false;
 		agreeState = new HashMap<>();
 		for (String au : authority) {
-			agreeState.put(au, false);
+			agreeState.put(au, AgreeState.NOTSEEN);
 		}
 	}
 	
@@ -49,7 +53,7 @@ public class MultipleAuthorities extends Transation {
 	}
 	
 	public void agreeSignature(Boolean agree) {
-		agreeState.put(publicKey, agree);
+		agreeState.put(publicKey, agree?AgreeState.AGREED:AgreeState.DECLINED);
 		if(agreeResult()){
 			agreePermission = true;
 		}
@@ -57,8 +61,10 @@ public class MultipleAuthorities extends Transation {
 	
 	private boolean agreeResult() {
 		int k = 0;
+		List<String> au = new ArrayList<String>();
+		au.addAll(authority);
 		for(int i = 0; i <authority.size(); i++){
-				if(agreeState.get(authority.get(i)) == true)
+				if(agreeState.get(au.get(i)) == AgreeState.AGREED)
 				k++;
 		}
 		if(k >= threshold)

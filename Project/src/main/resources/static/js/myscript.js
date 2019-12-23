@@ -1,9 +1,11 @@
 //Load Trang - An Table Kha Nang Kham Va Xet Nghiem
 var listBenhVien=[];
+var listHopDong=[];
 
 $( document ).ready(function() {
 	 $("#data_table").hide();
 	 
+	 //Gọi hàm ajax lấy ra danh sách bệnh viện
 	searchHospital((data)=>{
 		listBenhVien = JSON.parse(data);
 
@@ -13,6 +15,13 @@ $( document ).ready(function() {
 		});
 
 		$("#listDropdownHospital").append(publicKeys);
+	});
+	
+	//Gọi hàm ajax lấy ra danh sách hợp đồng
+	searchSmartContract((data)=>{
+		console.log(data);
+		console.log(data.listSCDone[0].ChuanDoanBenhAn);
+		listHopDong = data;
 	});
 });
 
@@ -148,6 +157,82 @@ $(function() {
 					});
 });
 
+//Hàm truy vấn danh sách hợp đồng
+function searchSmartContract(callBack) {
+
+	var publicKey = $("#publicKey").html();
+	var privateKey = $("#privateKey").html();
+
+	$.ajax({
+		type : "GET",
+		contentType : "application/json",
+		url : "/ajax/getListSmartContract",
+		data : {
+			publicKey : publicKey,
+			privateKey : privateKey
+		},
+		dataType : 'json',
+		timeout : 100000,
+		success : function(data) {
+			callBack(data);
+		},
+		error : function(e) {
+			console.log("ERROR: ", e);
+		}
+	});
+}
+
+//Hàm truy vấn hình ảnh
+function searchPicture(fileHash, callBack) {
+
+	var publicKey = $("#publicKey").html();
+	var privateKey = $("#privateKey").html();
+
+	$.ajax({
+		type : "GET",
+		contentType : "application/json",
+		url : "/ajax/getPicture",
+		data : {
+			publicKey : publicKey,
+			privateKey : privateKey,
+			fileHash: fileHash
+		},
+		dataType : 'json',
+		timeout : 100000,
+		success : function(data) {
+			callBack(data);
+		},
+		error : function(e) {
+			console.log("ERROR: ", e);
+		}
+	});
+}
+
+//Hàm cập nhật trạng thái đồng ý
+function updateAgree(smartContracts, callBack) {
+
+	var publicKey = $("#publicKey").html();
+	var privateKey = $("#privateKey").html();
+
+	$.ajax({
+		type : "GET",
+		contentType : "application/json",
+		url : "/ajax/updateAgree",
+		data : {
+			publicKey : publicKey,
+			privateKey : privateKey,
+			smartContracts: smartContracts
+		},
+		dataType : 'json',
+		timeout : 100000,
+		success : function(data) {
+			callBack(data);
+		},
+		error : function(e) {
+			console.log("ERROR: ", e);
+		}
+	});
+}
 
 
 //Hien thi chi tiet giao dich
