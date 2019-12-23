@@ -775,7 +775,7 @@ a:hover.back-to-top {
 		list-style: none;
 		position: relative;
 		margin: 0;
-		padding: 30px 0 0;
+		padding: 30px 20px 0;
 	}
 
 	.task-list:after {
@@ -790,9 +790,9 @@ a:hover.back-to-top {
 	}
 
 	.task-list li {
-		margin-bottom: 10px;
 		padding-left: 55px;
 		position: relative;
+		padding-top: 15px;
 	}
 
 	.task-list li:last-child {
@@ -820,7 +820,7 @@ a:hover.back-to-top {
 		margin-bottom: 5px;
 		-webkit-transition: all 0.5s ease-in-out;
 		transition: all 0.5s ease-in-out;
-		height: 400px;
+		height: 520px;
 		overflow: scroll;
 	}
 
