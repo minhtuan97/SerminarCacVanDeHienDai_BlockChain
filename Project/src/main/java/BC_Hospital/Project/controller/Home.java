@@ -29,6 +29,7 @@ import com.google.gson.JsonObject;
 import BC_Hospital.Project.AuServices.KeyGeneration;
 import BC_Hospital.Project.DPaaS.DataManagement.Offchain;
 import BC_Hospital.Project.DPaaS.DataManagement.Onchain;
+import BC_Hospital.Project.Model.AgreeState;
 import BC_Hospital.Project.Model.BlockOffChain;
 import BC_Hospital.Project.Model.BlockOnChain;
 import BC_Hospital.Project.Model.ExamAndAnalysis;
@@ -234,6 +235,8 @@ public class Home {
 
 		//Tạo danh sách agreeState
 		smartContract.createAgreeState();
+		smartContract.authority.add(this.publicKey);
+		smartContract.agreeState.put(this.publicKey, AgreeState.AGREED);
 		
 		//Nhận hình ảnh
 		try {

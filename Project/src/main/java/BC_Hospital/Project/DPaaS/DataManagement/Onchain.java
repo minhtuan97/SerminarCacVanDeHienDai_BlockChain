@@ -83,6 +83,11 @@ public class Onchain {
 			return tempBlockOnChain;
 		}
 		return null;
-		
+	}
+	
+	//Lấy block theo dữ liệu trong data
+	public List<BlockOnChain> findByDataContain(String text) {
+		return blockOnChainRepository
+				.findByDataContaining(text);
 	}
 }

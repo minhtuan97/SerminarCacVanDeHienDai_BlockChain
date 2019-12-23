@@ -85,6 +85,9 @@
 	<!-- end of navbar -->
 	<!-- end of navigation -->
 
+	<!-- Public key và Private key của người dùng, trạng thái hidden-->
+	<div id="publicKey" th:if="${publicKey!= null}" th:text="${publicKey}" hidden></div>
+	<div id="privateKey" th:if="${privateKey!= null}" th:text="${privateKey}" hidden></div>
 
 	<!-- Header -->
 	<header id="header" class="header">
@@ -185,13 +188,13 @@
 									aria-haspopup="true" aria-expanded="false"
 									data-reference="parent"></button>
 								<div class="dropdown-menu"
-									aria-labelledby="dropdownMenuReference">
-									<a class="dropdown-item MyMemeber">adhajskdhakjsdhajksdhakjsdhkajsdhaksjhdakjsd</a>
-									<a class="dropdown-item MyMemeber">Another action</a>
+									aria-labelledby="dropdownMenuReference" id="listDropdownHospital">
+									<!-- <a class="dropdown-item MyMemeber">adhajskdhakjsdhajksdhakjsdhkajsdhaksjhdakjsd</a>-->
+									<a class="dropdown-item MyMemeber">Another action</a> 
 								</div>
 							</div>
 							<div id="data_table">
-								<div class="jumbotron" style="background-color: blue;'">
+								<div class="jumbotron" style="background-color: blue;">
 									<h3>
 										Bệnh viện <span id="keyBenhVien">asdasdadasdadasd</span>
 									</h3>

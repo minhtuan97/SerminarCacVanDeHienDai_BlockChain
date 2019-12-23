@@ -19,4 +19,7 @@ public interface BlockOnChainRepository extends CrudRepository<BlockOnChain, Str
 
 	//List<BlockOnChain> findTop1ByOrderBytimestampDesc();
 	List<BlockOnChain> findTop1ByOrderByTimestampDesc();
+	
+	//Tìm những block có chứa chuỗi text
+	List<BlockOnChain> findByDataContaining(String text);
 }
