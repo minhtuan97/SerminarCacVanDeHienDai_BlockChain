@@ -49,6 +49,7 @@ public class Home {
 		//return aOffchain.finaAll();
 //		aOnchain.storeOnChainData("attribute", "ciphertext", blockOnChain );
 //		return"aaa";
+		System.out.println("chuoi truoc"+ aOnchain.SelectPreHash().getHash());
 		return aOnchain.obtainOnChainData("112233456");
     }
 
@@ -146,7 +147,6 @@ public class Home {
 		try {
 			Node aNode= new Node(keyData.privateKey, keyData.publicKey);
 			System.out.println("ket qua: "+Base64.getEncoder().encodeToString(aNode.getPrivateKey().getEncoded()));
-			//System.out.println("ket qua"+aNode.getPrivateKey().toString());
 		} catch (Exception e) {
 			System.out.println("Loi khong the convert");
 			
