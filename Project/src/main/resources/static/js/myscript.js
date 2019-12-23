@@ -348,7 +348,7 @@ function showChiTietBenhAn(Element){
 		if(data!="null")
 			$('#ItemPreview').attr('src', 'data:image/png;base64,'+data);
 		else
-			alert("Ảnh Lỗi!");
+			$("#ItemPreview").attr('src', 'https://www.freeiconspng.com/uploads/error-icon-28.png');
 	});
 	
 
