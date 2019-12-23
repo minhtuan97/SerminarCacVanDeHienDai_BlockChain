@@ -4,6 +4,7 @@ import java.io.Console;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.criteria.Predicate.BooleanOperator;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -107,11 +108,11 @@ public class AjaxController {
 		this.publicKey = request.getParameter("publicKey");
 		this.privateKey = request.getParameter("privateKey");
 		Node node = new Node(this.publicKey, this.privateKey);
-		String hashFile = request.getParameter("");
+		String fileHash = request.getParameter("fileHash");
 		
-		byte[] file = aOffchain.obtainOffChainData(hashFile).get().getFile();
+		byte[] file = aOffchain.obtainOffChainData(fileHash).get().getFile();
 		
-		if(FileComparision.Compare(hashFile, file))
+		if(FileComparision.Compare(fileHash, file))
 			return file;
 		
 		
@@ -126,6 +127,24 @@ public class AjaxController {
 		this.privateKey = request.getParameter("privateKey");
 		Node node = new Node(this.publicKey, this.privateKey);
 		
+		String MSBenhAn = request.getParameter("MSBenhAn");
+		Boolean agree = Boolean.parseBoolean(request.getParameter("agreeState"));
+//		AgreeState agreeState = agreement? AgreeState.AGREED:AgreeState.DECLINED;
+		
+		//Lấy ra những block mà trường data có chứa mảng smartContracts
+		List<BlockOnChain> listBlock = aOnchain.findByDataContain("\"MSBenhAn\": \""+MSBenhAn+"\"");
+		
+		for (BlockOnChain block : listBlock) {
+			JsonObject obj = new JsonParser().parse(block.getData()).getAsJsonObject();
+			JsonArray smartContracts = obj.get("smartContracts").getAsJsonArray();
+//			for (JsonElement elem : smartContracts) {
+			SmartContractForm sc = new Gson().fromJson(smartContracts.get(0), SmartContractForm.class);
+			
+			if(sc.agreeState.containsKey(publicKey)) {
+				sc.agreeSignature(publicKey, agree);
+			}
+//			}
+		}
 		
 		return "";
 	}

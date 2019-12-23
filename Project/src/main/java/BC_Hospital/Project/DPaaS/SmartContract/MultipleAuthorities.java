@@ -1,5 +1,6 @@
 package BC_Hospital.Project.DPaaS.SmartContract;
 
+import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -23,6 +24,14 @@ public class MultipleAuthorities extends Transation {
 	protected String agreeRequest;
 	protected boolean agreePermission;
 	protected boolean init;
+	
+	public boolean isAgreePermission() {
+		return agreePermission;
+	}
+
+	public void setAgreePermission(boolean agreePermission) {
+		this.agreePermission = agreePermission;
+	}
 
 	public void initial(Set<String> authority, int threshold) {
 		if(init) return;
@@ -52,7 +61,7 @@ public class MultipleAuthorities extends Transation {
 		agreeRequest = request;
 	}
 	
-	public void agreeSignature(Boolean agree) {
+	public void agreeSignature(String publicKey, Boolean agree) {
 		agreeState.put(publicKey, agree?AgreeState.AGREED:AgreeState.DECLINED);
 		if(agreeResult()){
 			agreePermission = true;

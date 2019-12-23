@@ -226,19 +226,20 @@ function searchPicture(fileHash, callBack) {
 }
 
 //Hàm cập nhật trạng thái đồng ý
-function updateAgree(smartContracts, callBack) {
+function updateAgree(MSBenhAn, agreeState, callBack) {
 
 	var publicKey = $("#publicKey").html();
 	var privateKey = $("#privateKey").html();
 
 	$.ajax({
-		type : "GET",
+		type : "POST",
 		contentType : "application/json",
 		url : "/ajax/updateAgree",
 		data : {
 			publicKey : publicKey,
 			privateKey : privateKey,
-			smartContracts: smartContracts
+			MSBenhAn: MSBenhAn,
+			agreeState: agreeState
 		},
 		dataType : 'json',
 		timeout : 100000,
