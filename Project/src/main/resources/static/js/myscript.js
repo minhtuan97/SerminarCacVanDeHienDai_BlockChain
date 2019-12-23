@@ -9,8 +9,9 @@ $( document ).ready(function() {
 
 		var publicKeys = "";
 		listBenhVien.forEach(element => {
-			publicKeys += '<a class="dropdown-item MyMemeber "onClick="memberClick()">'+element.publicKey+'</a>';
+			publicKeys += '<a  class="dropdown-item MyMemeber" onClick="memberClick(this)">'+element.publicKey+'</a>';		
 		});
+		
 
 		$("#listDropdownHospital").append(publicKeys);
 	});
@@ -19,31 +20,47 @@ $( document ).ready(function() {
 
 
 // Click Vao Mot Thanh Vien Tham Gia
-$(".MyMemeber").click(function() {
-	if (!$('#data_table').is(':visible')) {
-		$("#data_table").show();
-	}
-
-	var valueATag = $(this).text();
-
-	$("#keyBenhVien").text(valueATag);
-
-	$("#listKhaNangKham").text("ashjdakjsdhakjsdhkjh");
-	$("#listKhaXetNghiem").text("ABCJjkashdjksfhskjf");
-});
-
-//Onclick của MyMember 
-function memberClick(){
+function memberClick(a){
 	if(!$('#data_table').is(':visible')){
 		$("#data_table").show();
 	}
-	alert("sjahdjashd");
-	// var valueATag = $(this).text();
 	
-	// $("#keyBenhVien").text(valueATag);
+	let key = $(a).text();
+	let khanangkham = "* ";
+	let khanangxetnghiem = "* ";
+
+	listBenhVien.forEach(element => {
+		$("#keyBenhVien").val(element.publicKey);
+		if(element.publicKey==key){
+			element.ability.benhNhiemTrung? khanangkham+="Bệnh nhiễm trùng * " :  khanangkham+="";
+			element.ability.buouTanSinh? khanangkham+="Bướu tân sinh * " :  khanangkham+="";
+			element.ability.benhVeMau? khanangkham+="Bệnh về máu * " :  khanangkham+="";
+			element.ability.benhNoiTietDinhDuongVaChuyenHoa? khanangkham+="Bệnh nội tiết dinh dưỡng và chuyển hóa * " :  khanangkham+="";
+			element.ability.benhTamThan? khanangkham+="Bệnh tâm thần * " :  khanangkham+="";
+			element.ability.benhHeThanKinh? khanangkham+="Bệnh hệ thần kinh * " :  khanangkham+="";
+			element.ability.benhVeMat? khanangkham+="Bệnh về mắt * " :  khanangkham+="";
+			element.ability.benhTaiMuiHong? khanangkham+="Bệnh tai mũi họng * " :  khanangkham+="";
+			element.ability.benhHeTuanHoan? khanangkham+="Benh nhiem trung" :  khanangkham+="";
+			element.ability.benhHeHoHap? khanangkham+="Benh nhiem trung" :  khanangkham+="";
+			element.ability.benhHeTieuHoa? khanangkham+="Benh nhiem trung" :  khanangkham+="";
+			element.ability.benhDaVaMoDuoiDa? khanangkham+="Benh nhiem trung" :  khanangkham+="";
+			element.ability.benhCoXuongKhop? khanangkham+="Benh nhiem trung" :  khanangkham+="";
+			element.ability.benhHeSinhDucTietNieu? khanangkham+="Benh nhiem trung" :  khanangkham+="";
+			element.ability.thaiNghenSinhDe? khanangkham+="Benh nhiem trung" :  khanangkham+="";
+			element.ability.vetThuongNgoDoc? khanangkham+="Benh nhiem trung" :  khanangkham+="";
+			element.ability.cacYeuToSauChuaTriYTe? khanangkham+="Benh nhiem trung" :  khanangkham+="";
+			
+			element.ability.xetNghiemMau? khanangxetnghiem+="Benh nhiem trung" :  khanangkham+="";
+			element.ability.chupXQuang? khanangxetnghiem+="Benh nhiem trung" :  khanangkham+="";
+		
+			
+		}
+		
+		$("#listKhaNangKham").text(khanangkham);
+		$("#listKhaXetNghiem").text(khanangxetnghiem);
+			
+	});
 	
-	// $("#listKhaNangKham").text("ashjdakjsdhakjsdhkjh");
-	// $("#listKhaXetNghiem").text("ABCJjkashdjksfhskjf");
 }
 
 
@@ -52,7 +69,7 @@ function memberClick(){
 $(function() {
 	$('#Inser_btn').click(function() {
 		var oldText = $("#danhsachThanhVien").val();
-		var span = $('#keyBenhVien').text();
+		var span = $('#keyBenhVien').val();
 
 		var result;
 
