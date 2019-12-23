@@ -15,7 +15,7 @@ import javax.crypto.NoSuchPaddingException;
 
 public class HashIntegrity {
 
-	Boolean dataDecryption(String privatekey, String cyphertext) {
+	public static Boolean dataDecryption(String privatekey, String cyphertext) {
 		byte[] privateKey = convertStringToByte(privatekey);
 
 		PKCS8EncodedKeySpec spec = new PKCS8EncodedKeySpec(privateKey);
@@ -63,7 +63,7 @@ public class HashIntegrity {
 	// ==================== Utilities Function ====================
 
 	// Convert String to byte
-	private byte[] convertStringToByte(String stringData) {
+	private static byte[] convertStringToByte(String stringData) {
 		byte[] bytes = Base64.getDecoder().decode(stringData);
 		return bytes;
 	}

@@ -4,15 +4,19 @@ import java.util.List;
 import java.util.Optional;
 import java.util.List;
 import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Date;
 
 import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +33,8 @@ import BC_Hospital.Project.Model.BlockOffChain;
 import BC_Hospital.Project.Model.BlockOnChain;
 import BC_Hospital.Project.Model.ExamAndAnalysis;
 import BC_Hospital.Project.Model.Hospital;
+import BC_Hospital.Project.Model.KeyData;
+import BC_Hospital.Project.Model.MyTransaction;
 import BC_Hospital.Project.Model.Node;
 import BC_Hospital.Project.Model.SmartContractForm;
 import BC_Hospital.Project.repository.BlockOffChainRepository;
@@ -213,28 +219,10 @@ public class Home {
 		list.add(hospital);
 		JsonArray array = new Gson().toJsonTree(list).getAsJsonArray();
 		JsonObject object = new JsonObject();
-		object.add("hospital", array);
+		object.add("hospitals", array);
 
 		// Thêm dữ liệu vào database
-		BlockOnChain block;
-		BlockOnChain lastBlock = aOnchain.SelectPreHash();
-		String lastBlockData =lastBlock.getData();
-		if (lastBlockData.length() < 10000 && lastBlock.getHash().length()==64) {
-			lastBlock.addData(object);
-			block = lastBlock;
-		} else {
-			block = new BlockOnChain();
-			block.setData(object);
-			block.setTimestamp(new Date().getTime());
-			block.setPrevhash(lastBlock.getHash());
-			try {
-				block.caculateHash();
-			} catch (Exception e) {
-				System.out.println(e.getMessage());
-			}
-		}
-
-		aOnchain.storeOnChainData(block);
+		aOnchain.storeOnChainDataDependLastBlock(object);
 
 		addKeyToModel(model);
 		return "index";
@@ -244,13 +232,49 @@ public class Home {
 	@RequestMapping("/taoSmartContract")
 	public String taoSmartContract(Model model, @ModelAttribute("smartContractForm") SmartContractForm smartContract) {
 
-		System.out.println(smartContract.ChuanDoanBenhAn);
-		System.out.println(smartContract.threshold);
-		System.out.println(smartContract.ThoiGian);
-
+		//Tạo danh sách agreeState
+		smartContract.createAgreeState();
+		
+		//Nhận hình ảnh
+		try {
+			smartContract.xray.setFile(smartContract.imageXQuang[0].getBytes());
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+		}	
+		//Tạo hash của hình ảnh
+		smartContract.xray.generateHashFile();
+		
+		//Thêm dữ liệu file vào database OffChain
+		BlockOffChain blockOffChain = new BlockOffChain(smartContract.xray.getHashFile(), smartContract.xray.getFile());
+		aOffchain.storeOffChainData(blockOffChain);
+		smartContract.imageXQuang = null;
+		smartContract.xray.setFile(null);
+		
+		// Chuyển hợp đồng sang dạng json array
+		List<SmartContractForm> list = new ArrayList<>();
+		list.add(smartContract);
+		JsonArray array = new Gson().toJsonTree(list).getAsJsonArray();
+		JsonObject object = new JsonObject();
+		object.add("smartContracts", array);
+		
+		//Thêm dữ liệu vào database Onchain
+		aOnchain.storeOnChainDataDependLastBlock(object);
 //		model.addAttribute("transaction", tenTransaction);
 
+		addKeyToModel(model);
 		return "index";
 	}
 
+	
+	
+	
+	/*----------------------------------------------------------------------------------
+	 * Các phương thức phụ
+	 */
+	//Chuyển format thời gian,...
+	@InitBinder     
+	public void initBinder(WebDataBinder binder){
+	     binder.registerCustomEditor(Date.class,     
+	                         new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd"), true, 10));   
+	}
 }

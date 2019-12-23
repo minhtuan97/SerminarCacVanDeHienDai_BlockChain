@@ -34,7 +34,7 @@
 
 <body data-spy="scroll">
 
-<!-- Preloader -->
+	<!-- Preloader -->
 
 	<!-- end of preloader -->
 
@@ -44,7 +44,7 @@
 		class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
 
 		<!-- Image Logo -->
-		<a class="navbar-brand logo-image" href="index.html"><img
+		<a class="navbar-brand logo-image" href="/home"><img
 			src="images/logo.svg" alt="alternative"></a>
 
 		<!-- Mobile Menu Toggle Button -->
@@ -70,10 +70,8 @@
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle page-scroll" href="#about"
 					id="navbarDropdown" role="button" aria-haspopup="true"
-					aria-expanded="false" 
-					th:if="${publicKey!= null}" 
-					th:text="${publicKey.substring(publicKey.length()-10)}">...</a>
-					<!-- th:if="${node!= null}" 
+					aria-expanded="false" th:if="${publicKey!= null}"
+					th:text="${publicKey.substring(publicKey.length()-10)}">...</a> <!-- th:if="${node!= null}" 
 					th:text="${node.getPublicKeyString().substring(node.getPublicKeyString().length()-10)}">...</a> -->
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 						<a class="dropdown-item" href="terms-conditions.html"><span
@@ -156,64 +154,9 @@
 									name="Loai" required> <label class="label-control">Loại</label>
 								<div class="help-block with-errors"></div>
 							</div>
-							<!-- end of submit form -->
-						</div>
-						<!-- end of col -->
-						<div class="col-lg-4">
-							<label>Thông tin XQuang</label>
-							<!-- Submit Form -->
-							<div class="form-group">
-								<input type="text" class="form-control-input" id="rname"
-									name="MSXQuang" required> <label class="label-control">Mã
-									số XQuang</label>
-								<div class="help-block with-errors"></div>
-							</div>
-							<div class="form-group">
-								<input type="text" class="form-control-input" id="rname"
-									name="SoXQuang" required> <label class="label-control">Số
-									XQuang</label>
-								<div class="help-block with-errors"></div>
-							</div>
-							<div class="form-group">
-								<input type="date" class="form-control-input" id="rname"
-									name="ThoiGian" required> <label class="label-control">Thời
-									gian</label>
-								<div class="help-block with-errors"></div>
-							</div>
-							<div class="form-group">
-								<input type="text" class="form-control-input" id="rname"
-									name="ChuanDoanXQuang" required> <label
-									class="label-control">Chẩn đoán</label>
-								<div class="help-block with-errors"></div>
-							</div>
-							<div class="form-group">
-								<input type="text" class="form-control-input" id="rname"
-									name="YeuCauChup" required> <label
-									class="label-control">Yêu cầu chụp</label>
-								<div class="help-block with-errors"></div>
-							</div>
-							<div class="form-group">
-								<input type="text" class="form-control-input" id="rname"
-									name="KetQuaChup" required> <label
-									class="label-control">Kết quả chụp</label>
-								<div class="help-block with-errors"></div>
-							</div>
-							<div class="form-group">
-								<input type="file" name="imageXQuang" multiple="multiple"
-									class="form-control-input" id="rname" />
-							</div>
-							<!-- end of submit form -->
-
 
 							<label>Thông tin hợp đồng</label>
 							<!-- Submit Form -->
-
-							<div class="form-group">
-								<input type="text" class="form-control-input" id="rname"
-									required> <label class="label-control">Danh
-									sách tham gia chẩn đoán</label>
-								<div class="help-block with-errors"></div>
-							</div>
 							<div class="form-group">
 								<input type="text" class="form-control-input" id="rname"
 									name="threshold" required> <label class="label-control">Ngưỡng
@@ -226,49 +169,129 @@
 									class="label-control">Chẩn đoán (bệnh)</label>
 								<div class="help-block with-errors"></div>
 							</div>
-							<!-- end of submit form -->
-						</div>
-						<!-- end of col -->
-						<!-- Danh sach tham gia hop dong thong minh -->
-						<div class="col-lg-4">
+
+							<!-- Danh sach tham gia hop dong thong minh -->
 							<label>Thêm các bên liên quan của hợp đồng</label>
 							<div class="form-group">
 								<label for="comment">Thành viên:</label>
-								<textarea class="form-control" rows="5" id="danhsachThanhVien"></textarea>
+								<textarea class="form-control" rows="5" id="danhsachThanhVien" name="authority"></textarea>
 							</div>
 							<div class="btn-group">
-								<button type="button" class="btn btn-secondary">Chọn để xem</button>
+								<button type="button" class="btn btn-secondary">Chọn để
+									xem</button>
 								<button type="button"
 									class="btn btn-secondary dropdown-toggle dropdown-toggle-split"
 									id="dropdownMenuReference" data-toggle="dropdown"
 									aria-haspopup="true" aria-expanded="false"
-									data-reference="parent">
-								</button>
+									data-reference="parent"></button>
 								<div class="dropdown-menu"
 									aria-labelledby="dropdownMenuReference">
-									<a class="dropdown-item MyMemeber" >adhajskdhakjsdhajksdhakjsdhkajsdhaksjhdakjsd</a> 
+									<a class="dropdown-item MyMemeber">adhajskdhakjsdhajksdhakjsdhkajsdhaksjhdakjsd</a>
 									<a class="dropdown-item MyMemeber">Another action</a>
 								</div>
 							</div>
 							<div id="data_table">
-								<div class="jumbotron" style="background-color:blue;'">
-									<h3>Bệnh viện <span id="keyBenhVien">asdasdadasdadasd</span></h3>
-									<h4>Khả năng khám bệnh</h4>	
-									<h6 id="listKhaNangKham"></h6>							
+								<div class="jumbotron" style="background-color: blue;'">
+									<h3>
+										Bệnh viện <span id="keyBenhVien">asdasdadasdadasd</span>
+									</h3>
+									<h4>Khả năng khám bệnh</h4>
+									<h6 id="listKhaNangKham"></h6>
 									<h4>Khả năng xét nghiệm</h4>
-									<h6 id="listKhaXetNghiem"></h6>	
-									<button type="button" id="Inser_btn" class="btn btn-primary">Insert Data</button>
+									<h6 id="listKhaXetNghiem"></h6>
+									<button type="button" id="Inser_btn" class="btn btn-primary">Insert
+										Data</button>
 								</div>
 							</div>
 							<div class="form-group" style="margin-top: 5rem;">
 								<button type="submit" value="Submit"
 									class="form-control-submit-button">Đồng ý</button>
 							</div>
+							<!-- end of submit form -->
+						</div>
+						<!-- end of col -->
+
+						<div class="col-lg-4">
+							<label>Thông tin xét nghiệm máu</label>
+							<!-- Submit Form -->
+							<div class="form-group">
+								<input type="text" class="form-control-input" id="rname"
+									name="hematology.MS" required> <label class="label-control">Mã số </label>
+								<div class="help-block with-errors"></div>
+							</div>
+							<div class="form-group">
+								<input type="text" class="form-control-input" id="rname"
+									name="hematology.Loai" required> <label class="label-control">Loại </label>
+								<div class="help-block with-errors"></div>
+							</div>
+							<div class="form-group">
+								<input type="text" class="form-control-input" id="rname"
+									name="hematology.SoLuongHC" required> <label class="label-control">Số lượng hồng cầu</label>
+								<div class="help-block with-errors"></div>
+							</div>	
+							<div class="form-group">
+								<input type="text" class="form-control-input" id="rname"
+									name="hematology.HuyetSacTo" required> <label class="label-control">Huyết sắc tố</label>
+								<div class="help-block with-errors"></div>
+							</div>
+							<div class="form-group">
+								<input type="text" class="form-control-input" id="rname"
+									name="hematology.Hematocrit" required> <label class="label-control">Hematocrit </label>
+								<div class="help-block with-errors"></div>
+							</div>					
+						</div>
+						<!-- end of col -->
+
+						<div class="col-lg-4">
+							<label>Thông tin XQuang</label>
+							<!-- Submit Form -->
+							<div class="form-group">
+								<input type="text" class="form-control-input" id="rname"
+									name="xray.MS" required> <label class="label-control">Mã
+									số XQuang</label>
+								<div class="help-block with-errors"></div>
+							</div>
+							<div class="form-group">
+								<input type="text" class="form-control-input" id="rname"
+									name="xray.So" required> <label class="label-control">Số
+									XQuang</label>
+								<div class="help-block with-errors"></div>
+							</div>
+							<div class="form-group">
+								<input type="date" class="form-control-input" id="rname"
+									name="xray.ThoiGian" required> <label class="label-control">Thời
+									gian</label>
+								<div class="help-block with-errors"></div>
+							</div>
+<!-- 							<div class="form-group">
+								<input type="text" class="form-control-input" id="rname"
+									name="xray.ChuanDoan" required> <label
+									class="label-control">Chẩn đoán</label>
+								<div class="help-block with-errors"></div>
+							</div> -->
+							<div class="form-group">
+								<input type="text" class="form-control-input" id="rname"
+									name="xray.YeuCauChup" required> <label
+									class="label-control">Yêu cầu chụp</label>
+								<div class="help-block with-errors"></div>
+							</div>
+							<div class="form-group">
+								<input type="text" class="form-control-input" id="rname"
+									name="xray.KetQuaChup" required> <label
+									class="label-control">Kết quả chụp</label>
+								<div class="help-block with-errors"></div>
+							</div>
+							<div class="form-group">
+								<input type="file" name="imageXQuang" multiple="multiple"
+									class="form-control-input" id="rname" />
+							</div>
+							<!-- end of submit form -->
 						</div>
 						<!-- end of col -->
 					</div>
 					<!-- end of row -->
 				</form>
+				<!-- end of submit form -->
 			</div>
 			<!-- end of form-container -->
 		</div>
@@ -381,148 +404,164 @@
 
 
 	<!-- Modal -->
-	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	  <div class="modal-dialog" role="document">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <h5 class="modal-title" id="exampleModalLabel">Đăng ký bệnh viện</h5>
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-	          <span aria-hidden="true">&times;</span>
-	        </button>
-	      </div>
-	      <div class="modal-body">
-	      
-	  <!-- Bat dau Form Dang Ky -->
-	  <form th:action="@{/registratioOfExaminationAbility}" th:object="${ExamAndAnalysis}" enctype="multipart/form-data" method="POST">
-		<div class="form-group col-md-10">
-	      <label for="inputState" style="font-weight: bold; font-size: 18px">Khả năng khám</label>
-			<div class="form-check">
-			  <input class="form-check-input" type="checkbox" th:checked="${benhNhiemTrung}" name="benhNhiemTrung" id="defaultCheck1"> <!--  th:value="camcum" name="khaNangKham"-->
-			  <label class="form-check-label" for="defaultCheck1">
-			    Bệnh nhiễm trùng và ký sinh trùng
-			  </label>
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Đăng ký bệnh
+						viện</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+
+					<!-- Bat dau Form Dang Ky -->
+					<form th:action="@{/registratioOfExaminationAbility}"
+						th:object="${ExamAndAnalysis}" enctype="multipart/form-data"
+						method="POST">
+						<div class="form-group col-md-12">
+							<label for="inputState"
+								style="font-weight: bold; font-size: 18px">Khả năng khám</label>
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox"
+									th:checked="${benhNhiemTrung}" name="benhNhiemTrung"
+									id="defaultCheck1">
+								<!--  th:value="camcum" name="khaNangKham"-->
+								<label class="form-check-label" for="defaultCheck1">
+									Bệnh nhiễm trùng và ký sinh trùng </label>
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox"
+									th:checked="${buouTanSinh}" name="buouTanSinh"
+									id="defaultCheck1"> <label class="form-check-label"
+									for="defaultCheck1"> Bướu tân sinh </label>
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox"
+									th:checked="${benhVeMau}" name="benhVeMau" id="defaultCheck1">
+								<label class="form-check-label" for="defaultCheck1">
+									Bệnh của máu, cơ quan tạo máu và các rối loạn liên quan đến cơ
+									chế miễn dịch </label>
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox"
+									th:checked="${benhNoiTietDinhDuongVaChuyenHoa}"
+									name="benhNoiTietDinhDuongVaChuyenHoa" id="defaultCheck1">
+								<label class="form-check-label" for="defaultCheck1">
+									Bệnh nội tiết, dinh dưỡng và chuyển hóa </label>
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox"
+									th:checked="${benhTamThan}" name="benhTamThan"
+									id="defaultCheck1"> <label class="form-check-label"
+									for="defaultCheck1"> Bệnh tâm thần </label>
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox"
+									th:checked="${benhHeThanKinh}" name="benhHeThanKinh"
+									id="defaultCheck1"> <label class="form-check-label"
+									for="defaultCheck1"> Bệnh hệ thần kinh </label>
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox"
+									th:checked="${benhVeMat}" name="benhVeMat" id="defaultCheck1">
+								<label class="form-check-label" for="defaultCheck1">
+									Bệnh mắt và phần phụ của mắt </label>
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox"
+									th:checked="${benhTaiMuiHong}" name="benhTaiMuiHong"
+									id="defaultCheck1"> <label class="form-check-label"
+									for="defaultCheck1"> Bệnh lý tai mũi họng </label>
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox"
+									th:checked="${benhHeTuanHoan}" name="benhHeTuanHoan"
+									id="defaultCheck1"> <label class="form-check-label"
+									for="defaultCheck1"> Bệnh hệ tuần hoàn </label>
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox"
+									th:checked="${benhHeHoHap}" name="benhHeHoHap"
+									id="defaultCheck1"> <label class="form-check-label"
+									for="defaultCheck1"> Bệnh hệ hô hấp </label>
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox"
+									th:checked="${benhHeTieuHoa}" name="benhHeTieuHoa"
+									id="defaultCheck1"> <label class="form-check-label"
+									for="defaultCheck1"> Bệnh hệ tiêu hóa </label>
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox"
+									th:checked="${benhDaVaMoDuoiDa}" name="benhDaVaMoDuoiDa"
+									id="defaultCheck1"> <label class="form-check-label"
+									for="defaultCheck1"> Bệnh da và mô dưới da </label>
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox"
+									th:checked="${benhCoXuongKhop}" name="benhCoXuongKhop"
+									id="defaultCheck1"> <label class="form-check-label"
+									for="defaultCheck1"> Bệnh hệ cơ - xương - khớp và mô
+									liên kết </label>
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox"
+									th:checked="${benhHeSinhDucTietNieu}"
+									name="benhHeSinhDucTietNieu" id="defaultCheck1"> <label
+									class="form-check-label" for="defaultCheck1"> Bệnh hệ
+									sinh dục - Tiết niệu </label>
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox"
+									th:checked="${thaiNghenSinhDe}" name="thaiNghenSinhDe"
+									id="defaultCheck1"> <label class="form-check-label"
+									for="defaultCheck1"> Thai nghén, sinh đẻ và hậu sản </label>
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox"
+									th:checked="${vetThuongNgoDoc}" name="vetThuongNgoDoc"
+									id="defaultCheck1"> <label class="form-check-label"
+									for="defaultCheck1"> Vết thương ngộ độc và hậu quả của
+									một số nguyên nhân bên ngoài </label>
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox"
+									th:checked="${cacYeuToSauChuaTriYTe}"
+									name="cacYeuToSauChuaTriYTe" id="defaultCheck1"> <label
+									class="form-check-label" for="defaultCheck1"> Các yếu
+									tố ảnh hưởng đến tình trạng sức khỏe và tiếp xúc dịch vụ y tế </label>
+							</div>
+
+						</div>
+						<div class="form-group col-md-12">
+							<label for="inputState"
+								style="font-weight: bold; font-size: 18px">Khả năng xét
+								nghiệm</label>
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox"
+									th:checked="${xetNghiemMau}" name="xetNghiemMau"
+									id="defaultCheck1"> <label class="form-check-label"
+									for="defaultCheck1"> Xét nghiệm máu </label>
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox"
+									th:checked="${chupXQuang}" name="chupXQuang" id="defaultCheck1">
+								<label class="form-check-label" for="defaultCheck1">
+									Chụp X Quang </label>
+							</div>
+						</div>
+
+						<button type="submit" class="btn btn-primary">Đồng ý</button>
+					</form>
+					<!-- Ket Thuc Form  -->
+				</div>
 			</div>
-			<div class="form-check">
-			  <input class="form-check-input" type="checkbox" th:checked="${buouTanSinh}" name="buouTanSinh" id="defaultCheck1">
-			  <label class="form-check-label" for="defaultCheck1">
-			    Bướu tân sinh
-			  </label>
-			</div>
-			<div class="form-check">
-			  <input class="form-check-input" type="checkbox" th:checked="${benhVeMau}" name="benhVeMau" id="defaultCheck1">
-			  <label class="form-check-label" for="defaultCheck1">
-			    Bệnh của máu, cơ quan tạo máu và các rối loạn liên quan đến cơ chế miễn dịch
-			  </label>
-			</div>
-			<div class="form-check">
-			  <input class="form-check-input" type="checkbox" th:checked="${benhNoiTietDinhDuongVaChuyenHoa}" name="benhNoiTietDinhDuongVaChuyenHoa" id="defaultCheck1">
-			  <label class="form-check-label" for="defaultCheck1">
-			    Bệnh nội tiết, dinh dưỡng và chuyển hóa
-			  </label>
-			</div>
-			<div class="form-check">
-			  <input class="form-check-input" type="checkbox" th:checked="${benhTamThan}" name="benhTamThan" id="defaultCheck1">
-			  <label class="form-check-label" for="defaultCheck1">
-			    Bệnh tâm thần
-			  </label>
-			</div>
-			<div class="form-check">
-			  <input class="form-check-input" type="checkbox" th:checked="${benhHeThanKinh}" name="benhHeThanKinh" id="defaultCheck1">
-			  <label class="form-check-label" for="defaultCheck1">
-			    Bệnh hệ thần kinh
-			  </label>
-			</div>
-			<div class="form-check">
-			  <input class="form-check-input" type="checkbox" th:checked="${benhVeMat}" name="benhVeMat" id="defaultCheck1">
-			  <label class="form-check-label" for="defaultCheck1">
-			    Bệnh mắt và phần phụ của mắt
-			  </label>
-			</div>
-			<div class="form-check">
-			  <input class="form-check-input" type="checkbox" th:checked="${benhTaiMuiHong}" name="benhTaiMuiHong" id="defaultCheck1">
-			  <label class="form-check-label" for="defaultCheck1">
-				Bệnh lý tai mũi họng
-			  </label>
-			</div>
-			<div class="form-check">
-			  <input class="form-check-input" type="checkbox" th:checked="${benhHeTuanHoan}" name="benhHeTuanHoan" id="defaultCheck1">
-			  <label class="form-check-label" for="defaultCheck1">
-			    Bệnh hệ tuần hoàn
-			  </label>
-			</div>
-			<div class="form-check">
-			  <input class="form-check-input" type="checkbox" th:checked="${benhHeHoHap}" name="benhHeHoHap" id="defaultCheck1">
-			  <label class="form-check-label" for="defaultCheck1">
-			    Bệnh hệ hô hấp
-			  </label>
-			</div>
-			<div class="form-check">
-			  <input class="form-check-input" type="checkbox" th:checked="${benhHeTieuHoa}" name="benhHeTieuHoa" id="defaultCheck1">
-			  <label class="form-check-label" for="defaultCheck1">
-			    Bệnh hệ tiêu hóa
-			  </label>
-			</div>
-			<div class="form-check">
-			  <input class="form-check-input" type="checkbox" th:checked="${benhDaVaMoDuoiDa}" name="benhDaVaMoDuoiDa" id="defaultCheck1">
-			  <label class="form-check-label" for="defaultCheck1">
-			    Bệnh da và mô dưới da
-			  </label>
-			</div>
-			<div class="form-check">
-			  <input class="form-check-input" type="checkbox" th:checked="${benhCoXuongKhop}" name="benhCoXuongKhop" id="defaultCheck1">
-			  <label class="form-check-label" for="defaultCheck1">
-			    Bệnh hệ cơ - xương - khớp và mô liên kết
-			  </label>
-			</div>
-			<div class="form-check">
-			  <input class="form-check-input" type="checkbox" th:checked="${benhHeSinhDucTietNieu}" name="benhHeSinhDucTietNieu" id="defaultCheck1">
-			  <label class="form-check-label" for="defaultCheck1">
-			    Bệnh hệ sinh dục - Tiết niệu
-			  </label>
-			</div>
-			<div class="form-check">
-			  <input class="form-check-input" type="checkbox" th:checked="${thaiNghenSinhDe}" name="thaiNghenSinhDe" id="defaultCheck1">
-			  <label class="form-check-label" for="defaultCheck1">
-			    Thai nghén, sinh đẻ và hậu sản
-			  </label>
-			</div>
-			<div class="form-check">
-			  <input class="form-check-input" type="checkbox" th:checked="${vetThuongNgoDoc}" name="vetThuongNgoDoc" id="defaultCheck1">
-			  <label class="form-check-label" for="defaultCheck1">
-			    Vết thương ngộ độc và hậu quả của một số nguyên nhân bên ngoài
-			  </label>
-			</div>
-			<div class="form-check">
-			  <input class="form-check-input" type="checkbox" th:checked="${cacYeuToSauChuaTriYTe}" name="cacYeuToSauChuaTriYTe" id="defaultCheck1">
-			  <label class="form-check-label" for="defaultCheck1">
-			    BCác yếu tố ảnh hưởng đến tình trạng sức khỏe và tiếp xúc dịch vụ y tế
-			  </label>
-			</div>
-				
-	    </div>
-		<div class="form-group col-md-10">
-			<label for="inputState" style="font-weight: bold; font-size: 18px">Khả năng xét nghiệm</label>
-			<div class="form-check">
-			  <input class="form-check-input" type="checkbox" th:checked="${xetNghiemMau}" name="xetNghiemMau" id="defaultCheck1">
-			  <label class="form-check-label" for="defaultCheck1">
-			    Xét nghiệm máu
-			  </label>
-			</div>
-			<div class="form-check">
-			  <input class="form-check-input" type="checkbox" th:checked="${chupXQuang}" name="chupXQuang" id="defaultCheck1">
-			  <label class="form-check-label" for="defaultCheck1">
-			    Chụp X Quang
-			  </label>
-			</div>
-	    </div>
-		 
-		 <button type="submit" class="btn btn-primary">Đồng ý</button>
-	</form>
-   	<!-- Ket Thuc Form  -->          
-      </div>
-    </div>
-  </div>
-</div>
+		</div>
+	</div>
 
 
 
@@ -532,10 +571,10 @@
 	<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
 	<script type="text/javascript" th:src="@{/js/popper.min.js}"></script>
 	<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
-	<script type="text/javascript" th:src="@{/js/jquery.easing.min.js}"></script>  
+	<script type="text/javascript" th:src="@{/js/jquery.easing.min.js}"></script>
 	<script type="text/javascript" th:src="@{/js/swiper.min.js}"></script>
 	<script type="text/javascript" th:src="@{/js/jquery.magnific-popup.js}"></script>
-	<script type="text/javascript" th:src="@{/js/scripts.js}"></script>   
+	<script type="text/javascript" th:src="@{/js/scripts.js}"></script>
 	<script type="text/javascript" th:src="@{/js/myscript.js}"></script>
 
 </body>

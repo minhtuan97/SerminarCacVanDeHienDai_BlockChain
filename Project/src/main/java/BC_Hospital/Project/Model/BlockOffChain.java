@@ -13,7 +13,7 @@ public class BlockOffChain {
 	private String hashfile;
 	
 	// Trường data ở dưới đại diện cho cột data của table trong database
-	@Column(name = "file", unique = true)
+	@Column(name = "file", unique = true, columnDefinition = "MEDIUMBLOB")
 	private byte[] file;
 	
 	public BlockOffChain() {}

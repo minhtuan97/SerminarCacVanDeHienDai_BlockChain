@@ -1,4 +1,4 @@
-package BC_Hospital.Project.controller;
+package BC_Hospital.Project.Model;
 
 public class MyTransaction {
 	public String nameTransaction;

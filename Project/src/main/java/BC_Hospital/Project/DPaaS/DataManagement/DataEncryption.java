@@ -21,13 +21,13 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 
 
-public class Dataencryption {
-	PublicKey obtainPublicKey() {
+public class DataEncryption {
+	public static PublicKey obtainPublicKey() {
 		return null;
 	}
 
 	// Data Encryption
-	String dataEncryption(String publickey, Object Data) {
+	public static String dataEncryption(String publickey, Object Data) {
 		byte[] byteData = convertStringToByte(publickey);
 		X509EncodedKeySpec spec = null;
 		KeyFactory factory = null;
@@ -77,7 +77,7 @@ public class Dataencryption {
 	}
 
 	// Data Descyption
-	Object dataDecryption(String privatekey, String cyphertext) {
+	public static Object dataDecryption(String privatekey, String cyphertext) {
 		byte[] privateKey = convertStringToByte(privatekey);
 
 		PKCS8EncodedKeySpec spec = new PKCS8EncodedKeySpec(privateKey);
@@ -135,13 +135,13 @@ public class Dataencryption {
 	// ==================== Utilities Function ====================
 
 	// Convert String to byte
-	private byte[] convertStringToByte(String stringData) {
+	private static byte[] convertStringToByte(String stringData) {
 		byte[] bytes = Base64.getDecoder().decode(stringData);
 		return bytes;
 	}
 
 	// Convert Object to byte
-	private byte[] convertObjectToByte(Object object) {
+	private static byte[] convertObjectToByte(Object object) {
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
 		ObjectOutputStream oos = null;
 		try {
@@ -164,7 +164,7 @@ public class Dataencryption {
 	}
 
 	// Convert byte to Object
-	private Object convertByteToObject(byte[] data) throws IOException, ClassNotFoundException {
+	private static Object convertByteToObject(byte[] data) throws IOException, ClassNotFoundException {
 		ByteArrayInputStream in = new ByteArrayInputStream(data);
 		ObjectInputStream is = new ObjectInputStream(in);
 		return is.readObject();

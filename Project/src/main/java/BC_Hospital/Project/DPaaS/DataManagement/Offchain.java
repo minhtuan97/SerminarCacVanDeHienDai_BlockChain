@@ -18,8 +18,14 @@ public class Offchain {
 	 @Autowired 
 	 private BlockOffChainRepository blockOffChainRepository;
 	 
-	public BlockOffChain storeOffChainData(String hash, byte[] data) {
-		return blockOffChainRepository.save(new BlockOffChain(hash, data));	
+	public void storeOffChainData(String hash, byte[] data) {
+		blockOffChainRepository.save(new BlockOffChain(hash, data));	
+		System.out.println("storeOffChainData sucessfully");
+	}
+	
+	public void storeOffChainData(BlockOffChain blockOffChain) {
+		blockOffChainRepository.save(blockOffChain);	
+		System.out.println("storeOffChainData sucessfully");
 	}
 	
 	// lấy dữ liệu (data) off chain từ mã hash của nó
